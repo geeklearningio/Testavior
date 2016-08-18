@@ -19,16 +19,25 @@
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
     "Microsoft.Extensions.Options": "1.0.0",
     "MSTest.TestFramework": "1.0.1-preview",
-    "NETStandard.Library": "1.6.0",
-    "System.ComponentModel": "4.0.1",
-    "System.Net.Http": "4.1.0",
-    "System.Runtime": "4.1.0"
+    "NETStandard.Library": "1.6.0"
   },
 
   "frameworks": {
     "netstandard1.6": {
-      "imports": "dnxcore50"
+      "imports": "dnxcore50",
+      "dependencies": {
+        "System.ComponentModel": "4.0.1",
+        "System.Runtime": "4.1.0",
+        "System.Net.Http": "4.1.0"
+      }
     },
-    "net46": {}
+    "net46": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "System.ComponentModel": "4.0.0",
+        "System.Runtime": "4.0.20",
+        "System.Net.Http": "4.0.0.0"
+      }
+    }
   }
 }
