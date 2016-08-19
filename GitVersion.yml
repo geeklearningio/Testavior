@@ -1,8 +1,8 @@
 branches: 
-  dev(elop)?(ment)?$:
-    tag: alpha
+  master?$:
+    tag: beta
   features?[/-]:
-    tag: alpha.{BranchName}
+    tag: beta.{BranchName}
   releases?[/-]:
     mode: ContinuousDeployment
   hotfix(es)?[/-]:
