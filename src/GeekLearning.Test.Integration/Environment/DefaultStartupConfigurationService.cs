@@ -7,7 +7,7 @@
     using Microsoft.Extensions.Logging;
     using System;
 
-    public class StartupConfigurationService : IStartupConfigurationService
+    public class DefaultStartupConfigurationService : IStartupConfigurationService
     {
         public IServiceProvider ServiceProvider
         {
