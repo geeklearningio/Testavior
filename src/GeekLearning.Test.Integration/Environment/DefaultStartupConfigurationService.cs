@@ -17,13 +17,13 @@
             }
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) { }
+        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) { }
 
-        public void ConfigureEnvironment(IHostingEnvironment env) { }
+        public virtual void ConfigureEnvironment(IHostingEnvironment env) { }
 
-        public void ConfigureService(IServiceCollection services, IConfigurationRoot configuration) { }
+        public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration) { }
 
-        public void RegisterExternalStartupConfigured(Action callback)
+        public virtual void RegisterExternalStartupConfigured(Action callback)
         {
             throw new NotImplementedException();
         }

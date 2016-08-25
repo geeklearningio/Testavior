@@ -27,8 +27,7 @@
             IStartupConfigurationService externalStartupConfigurationService = new TStartupConfigurationService();
             externalStartupConfigurationService.RegisterExternalStartupConfigured(() => ServiceProvider = externalStartupConfigurationService.ServiceProvider);
 
-            return new TestServer(new WebHostBuilder().ConfigureServices(s => s.AddSingleton(externalStartupConfigurationService))
-                                                      .UseStartup<TStartup>());
+            return new TestServer(new WebHostBuilder().ConfigureStartup(externalStartupConfigurationService).UseStartup<TStartup>());
         }
     }
 }
