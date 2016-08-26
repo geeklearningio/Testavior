@@ -2,7 +2,7 @@
 {
     public static class HttpStatusCodeHelper
     {
-        public static bool IsErrorStatus(this HttpStatusCode statusCode)
+        public static bool IsErrorCode(this HttpStatusCode statusCode)
         {
             return (int)statusCode >= 400;
         }
