@@ -1,6 +1,6 @@
-﻿namespace GeekLearning.Test.Integration.Environment
+﻿namespace Microsoft.AspNetCore.Hosting
 {
-    using Microsoft.AspNetCore.Hosting;
+    using GeekLearning.Test.Integration.Environment;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class WebHostBuilderExtensions
