@@ -13,7 +13,7 @@
         {
             get
             {
-                throw new NotImplementedException();
+                return null;
             }
         }
 
@@ -25,7 +25,7 @@
 
         public virtual void RegisterExternalStartupConfigured(Action callback)
         {
-            throw new NotImplementedException();
+            callback();
         }
     }
 }
