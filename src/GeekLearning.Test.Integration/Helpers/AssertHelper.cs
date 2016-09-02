@@ -38,7 +38,7 @@
         /// <param name="expected">The expected.</param>
         /// <param name="actual">The actual.</param>
         /// <param name="ignoredProperties">The ignored properties.</param>
-        public static void AreEqual<TEntity>(IEnumerable<TEntity> expected, IEnumerable<TEntity> actual, params string[] ignoredProperties)
+        public static void IsEqual<TEntity>(this IEnumerable<TEntity> expected, IEnumerable<TEntity> actual, params string[] ignoredProperties)
             where TEntity : class
         {
             if (expected?.Count() != actual?.Count())
