@@ -1,12 +1,14 @@
-﻿namespace Microsoft.VisualStudio.TestTools.UnitTesting
+﻿namespace GeekLearning.Test.Integration
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
 
     public static class AssertHelper
     {
-        public static void AreEqual<TEntity>(this Assert assert, TEntity expected, TEntity actual, params string[] ignoredProperties)
+        public static void IsEqual<TEntity>(this TEntity actual, TEntity expected, params string[] ignoredProperties)
+            where TEntity : class
         {
             PropertyInfo[] properties = expected.GetType().GetProperties();
             if (ignoredProperties != null)
@@ -24,13 +26,7 @@
                 object actualValue = property.GetValue(actual, null);
                 if (!object.Equals(expectedValue, actualValue))
                 {
-                    Assert.Fail("Property {0}.{1} does not match. Expected: {2} but was: {3}", new object[]
-                    {
-                        property.DeclaringType.Name,
-                        property.Name,
-                        expectedValue,
-                        actualValue
-                    });
+                    throw new AssertionException($"Property {property.DeclaringType.Name}.{property.Name} does not match. Expected: {expectedValue} but was: {actualValue}");
                 }
             }
         }
@@ -42,20 +38,32 @@
         /// <param name="expected">The expected.</param>
         /// <param name="actual">The actual.</param>
         /// <param name="ignoredProperties">The ignored properties.</param>
-        public static void AreEqual<TEntity>(this Assert assert, IEnumerable<TEntity> expected, IEnumerable<TEntity> actual, params string[] ignoredProperties)
+        public static void AreEqual<TEntity>(IEnumerable<TEntity> expected, IEnumerable<TEntity> actual, params string[] ignoredProperties)
+            where TEntity : class
         {
-            Assert.AreEqual<int>((expected != null) ? expected.Count<TEntity>() : 0, (actual != null) ? actual.Count<TEntity>() : 0);
+            if (expected?.Count() != actual?.Count())
+            {
+                throw new AssertionException($"Expected and actual list count are not equal");
+            }
+
             if ((expected == null || expected.Count<TEntity>() == 0) && (actual == null || actual.Count<TEntity>() == 0))
             {
                 return;
             }
-
+      
             List<TEntity> expectedList = expected.ToList<TEntity>();
             List<TEntity> actualList = actual.ToList<TEntity>();
             for (int i = 0; i < expectedList.Count; i++)
             {
-                AreEqual<TEntity>(assert, expectedList[i], actualList[i], ignoredProperties);
+                actualList[i].IsEqual(expectedList[i], ignoredProperties);
             }
         }
+    }
+
+    public class AssertionException : Exception
+    {
+        public AssertionException() {}
+
+        public AssertionException(string messsage) : base(messsage) {}
     }
 }
