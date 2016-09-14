@@ -54,8 +54,6 @@
 
                 dbContext.Database.OpenConnection();
                 dbContext.Database.EnsureCreated();
-
-                dbContext.Database.Migrate();
             }
         }
 
