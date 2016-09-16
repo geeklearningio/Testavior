@@ -23,15 +23,13 @@
 
   "frameworks": {
     "netstandard1.6": {
-      "imports": "dnxcore50",
       "dependencies": {
         "System.ComponentModel": "4.0.1",
         "System.Runtime": "4.1.0",
         "System.Net.Http": "4.1.0"
       }
     },
-    "net46": {
-      "imports": "dnxcore50",
+    "net461": {
       "dependencies": {
         "System.ComponentModel": "4.0.0",
         "System.Runtime": "4.0.20",
