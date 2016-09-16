@@ -137,3 +137,4 @@ this.FeatureBackground();
 }
 #pragma warning restore
 #endregion
+namespace Microsoft.VisualStudio.TestTools.UnitTesting {[System.AttributeUsage(System.AttributeTargets.Method)]public class DescriptionAttribute : System.Attribute { public DescriptionAttribute(string description) { } } } //DescriptionAttributeFixGenerated

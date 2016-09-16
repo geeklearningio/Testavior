@@ -2,7 +2,6 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "GeekLearning.Test.Integration": "0.0.1-*",
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Microsoft.AspNetCore.TestHost": "1.0.0",
@@ -10,7 +9,9 @@
     "xunit": "2.2.0-beta2-build3300",
     "xunit.runner.console": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0",
-    "GeekLearning.Test.Integration.Sample.Web": "1.0.0-*"
+
+    "GeekLearning.Test.Integration": "*",
+    "GeekLearning.Test.Integration.Sample.Web": "*"
   },
 
   "frameworks": {
