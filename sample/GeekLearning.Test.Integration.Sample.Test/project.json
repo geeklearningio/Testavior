@@ -27,7 +27,7 @@
   "scripts": {
     "precompile": "dotnet specflow xUnit",
     "postcompile": [
-      "xcopy /Y ..\\GeekLearning.Test.Integration.Sample.Web\\project.json %compile:OutputDir%\\win7-x64\\"
+      "xcopy /Y ..\\GeekLearning.Test.Integration.Sample.Web\\project.json %compile:RuntimeOutputDir%\\"
     ]
   }
 }
