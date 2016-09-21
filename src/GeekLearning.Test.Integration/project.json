@@ -14,7 +14,7 @@
     "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
     "Microsoft.AspNetCore.TestHost": "1.0.0",
     "Microsoft.Data.Sqlite": "1.0.0",
-    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.1",
     "Microsoft.Extensions.Configuration.Abstractions": "1.0.0",
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
     "Microsoft.Extensions.Options": "1.0.0",
@@ -29,12 +29,10 @@
         "System.Net.Http": "4.1.0"
       }
     },
-    "net461": {
-      "dependencies": {
-        "System.ComponentModel": "4.0.0",
-        "System.Runtime": "4.0.20",
-        "System.Net.Http": "4.0.0.0"
-      }
+    "net451": {
+      "System.ComponentModel": "4.0.0",
+      "System.Runtime": "4.0.0",
+      "System.Net.Http": "4.0.0"
     }
   }
 }
