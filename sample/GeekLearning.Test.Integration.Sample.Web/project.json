@@ -11,8 +11,7 @@
       "type": "build"
     },
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
-
-    "GeekLearning.Test.Integration": "*"
+    "GeekLearning.Test.Configuration": "0.0.1-*"
   },
 
   "tools": {

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlow.GeneratedTests.GetBlogs
+namespace SpecFlow.GeneratedTests.Web.GetBlogs
 {
     using TechTalk.SpecFlow;
     
@@ -91,29 +91,29 @@ this.ScenarioSetup(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Url"});
-            table1.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "http://blog1.io"});
-            table1.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "http://blog2.io"});
-            table1.AddRow(new string[] {
+            table3.AddRow(new string[] {
                         "http://blog3.io"});
 #line 9
- testRunner.Given("the following blogs", ((string)(null)), table1, "Given ");
+ testRunner.Given("the following blogs", ((string)(null)), table3, "Given ");
 #line 14
- testRunner.When("I get the list of blogs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I get the list of blogs from Web", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Url"});
-            table2.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "http://blog1.io"});
-            table2.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "http://blog2.io"});
-            table2.AddRow(new string[] {
+            table4.AddRow(new string[] {
                         "http://blog3.io"});
 #line 15
- testRunner.Then("the result must be the following list", ((string)(null)), table2, "Then ");
+ testRunner.Then("the result must be the following model", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -137,4 +137,3 @@ this.FeatureBackground();
 }
 #pragma warning restore
 #endregion
-namespace Microsoft.VisualStudio.TestTools.UnitTesting {[System.AttributeUsage(System.AttributeTargets.Method)]public class DescriptionAttribute : System.Attribute { public DescriptionAttribute(string description) { } } } //DescriptionAttributeFixGenerated

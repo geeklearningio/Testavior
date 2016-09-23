@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using GeekLearning.Test.Integration.Sample.Data;
-using Microsoft.EntityFrameworkCore;
-using GeekLearning.Test.Integration.Environment;
+using GeekLearning.Test.Configuration.Startup;
 
 namespace GeekLearning.Test.Integration.Sample
 {
@@ -19,8 +17,8 @@ namespace GeekLearning.Test.Integration.Sample
         }
 
         public void ConfigureServices(IServiceCollection services)
-        {          
-            services.AddMvc();
+        {
+            services.AddMvc();//.AddFilterCollection();
             
             // Pass configuration (IConfigurationRoot) to the configuration service if needed
             this.externalStartupConfiguration.ConfigureService(services, null);

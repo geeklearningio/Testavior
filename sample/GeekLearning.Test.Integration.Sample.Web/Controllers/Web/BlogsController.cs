@@ -7,7 +7,7 @@ using GeekLearning.Test.Integration.Sample.Data;
 
 namespace GeekLearning.Test.Integration.Sample.Controllers.Web
 {
-    [Route("[controller]"), Route("/")]
+    [Route("blogs")]
     public class BlogsController : Controller
     {
         private BloggingContext context;
@@ -16,8 +16,7 @@ namespace GeekLearning.Test.Integration.Sample.Controllers.Web
         {
             this.context = context;
         }
-
-        [HttpGet("~/")]
+        
         public IActionResult Index()
         {
             return View(context.Blogs.ToList());

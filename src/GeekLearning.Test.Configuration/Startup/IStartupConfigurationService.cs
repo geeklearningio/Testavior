@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Environment
+﻿namespace GeekLearning.Test.Configuration.Startup
 {
     using System;
     using Microsoft.AspNetCore.Builder;

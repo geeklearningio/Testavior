@@ -9,29 +9,16 @@ using System.Net.Http;
 using GeekLearning.Test.Integration.Sample.Data;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs
+namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs.Api
 {
     [Binding]
     public class GetBlogsSteps
     {
-        [Given(@"the following blogs")]
-        public void GivenTheFollowingBlogs(Table table)
-        {
-            var apiTestEnvironment = ScenarioContext.Current.Get<ITestEnvironment>("ApiTestEnvironment");
-            using (var serviceScope = apiTestEnvironment.ServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var dbContext = serviceScope.ServiceProvider.GetService<Data.BloggingContext>();
-                var blogSet = table.CreateSet<Data.Blog>();
-                dbContext.Blogs.AddRange(blogSet);
-                dbContext.SaveChanges();
-            }
-        }
-
-        [When(@"I get the list of blogs")]
+        [When(@"I get the list of blogs from Api")]
         public void WhenIGetTheListOfBlogs()
         {
-            var apiTestEnvironment = ScenarioContext.Current.Get<ITestEnvironment>("ApiTestEnvironment");
-            var response = apiTestEnvironment.Client.GetAsync("/api/blogs").Result;
+            var testEnvironment = ScenarioContext.Current.Get<ITestEnvironment>("TestEnvironment");
+            var response = testEnvironment.Client.GetAsync("/api/blogs").Result;
             response.EnsureSuccessStatusCode();
 
             var result = response.Content.ReadAsAsync<Blog[]>().Result;

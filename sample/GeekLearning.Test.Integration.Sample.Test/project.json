@@ -9,9 +9,9 @@
     "xunit": "2.2.0-beta2-build3300",
     "xunit.runner.console": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0",
-
     "GeekLearning.Test.Integration": "*",
-    "GeekLearning.Test.Integration.Sample.Web": "*"
+    "GeekLearning.Test.Integration.Sample.Web": "*",
+    "GeekLearning.Test.Configuration": "0.0.1-*"
   },
 
   "frameworks": {

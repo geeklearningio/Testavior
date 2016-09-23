@@ -1,6 +1,7 @@
 ﻿namespace GeekLearning.Test.Integration.Environment
 {
     using Authentication;
+    using Configuration.Startup;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Data.Sqlite;
@@ -8,6 +9,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Mvc;
     using System;
     using System.Security.Claims;
 
@@ -26,6 +28,8 @@
 
             SetupStore(app);
 
+            app.AddTestFilter<SaveViewModelResultFilter>();
+
             this.externalStartupConfiguredCallback();
         }
 
@@ -36,6 +40,8 @@
 
         public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
         {
+            services.AddScoped(typeof(ViewModelRepository));
+
             ConfigureStore(services);
 
             ConfigureAuthentication(services);

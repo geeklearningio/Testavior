@@ -1,6 +1,6 @@
 ﻿namespace Microsoft.AspNetCore.Hosting
 {
-    using GeekLearning.Test.Integration.Environment;
+    using GeekLearning.Test.Configuration.Startup;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class WebHostBuilderExtensions

@@ -1,14 +1,10 @@
-﻿using GeekLearning.Test.Integration.Environment;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GeekLearning.Test.Integration.Sample
+﻿namespace GeekLearning.Test.Integration.Sample
 {
+    using GeekLearning.Test.Configuration.Startup;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
     public class StartupConfigurationService : DefaultStartupConfigurationService
     {
         public override void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
