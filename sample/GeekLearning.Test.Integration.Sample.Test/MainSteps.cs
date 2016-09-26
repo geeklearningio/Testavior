@@ -1,6 +1,7 @@
 ﻿using GeekLearning.Test.Integration.Environment;
 using GeekLearning.Test.Integration.Sample.Data;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -14,7 +15,8 @@ namespace GeekLearning.Test.Integration.Sample.Test
         {
             ScenarioContext.Current.Add(
                 "TestEnvironment",
-                new TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>>());
+                new TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>>(
+                        Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\..\GeekLearning.Test.Integration.Sample.Web")));
 
             // add additional data configuration here
         }

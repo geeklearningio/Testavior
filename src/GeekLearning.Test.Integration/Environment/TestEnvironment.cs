@@ -10,14 +10,17 @@
         where TStartup : class
         where TStartupConfigurationService : class, IStartupConfigurationService, new()
     {
+        private string contentRootPath;
+
         public TestServer Server { get; }
 
         public HttpClient Client { get; }
 
         public IServiceProvider ServiceProvider { get; private set; }
 
-        public TestEnvironment()
+        public TestEnvironment(string contentRootPath = null)
         {
+            this.contentRootPath = contentRootPath;
             this.Server = this.CreateTestServer();
             this.Client = Server.CreateClient();
         }
@@ -27,7 +30,7 @@
             IStartupConfigurationService externalStartupConfigurationService = new TStartupConfigurationService();
             externalStartupConfigurationService.RegisterExternalStartupConfigured(() => ServiceProvider = externalStartupConfigurationService.ServiceProvider);
 
-            return new TestServer(new WebHostBuilder().ConfigureStartup(externalStartupConfigurationService).UseStartup<TStartup>());
+            return new TestServer(new WebHostBuilder().ConfigureStartup(externalStartupConfigurationService, this.contentRootPath).UseStartup<TStartup>());
         }
     }
 }

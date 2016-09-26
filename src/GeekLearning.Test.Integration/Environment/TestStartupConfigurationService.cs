@@ -40,7 +40,7 @@
 
         public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
         {
-            services.AddScoped(typeof(ViewModelRepository));
+            services.AddSingleton(typeof(ViewModelRepository));
 
             ConfigureStore(services);
 

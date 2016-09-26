@@ -16,7 +16,8 @@ namespace GeekLearning.Test.Integration.Sample.Controllers.Web
         {
             this.context = context;
         }
-        
+
+        [Route("~/")]
         public IActionResult Index()
         {
             return View(context.Blogs.ToList());

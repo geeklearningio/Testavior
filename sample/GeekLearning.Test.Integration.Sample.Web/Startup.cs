@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using GeekLearning.Test.Configuration.Startup;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeekLearning.Test.Integration.Sample
 {
@@ -18,8 +19,8 @@ namespace GeekLearning.Test.Integration.Sample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();//.AddFilterCollection();
-            
+            services.AddMvc().AddFilterCollection();
+
             // Pass configuration (IConfigurationRoot) to the configuration service if needed
             this.externalStartupConfiguration.ConfigureService(services, null);
         }
@@ -27,6 +28,11 @@ namespace GeekLearning.Test.Integration.Sample
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             this.externalStartupConfiguration.Configure(app, env, loggerFactory);
+
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                serviceScope.ServiceProvider.GetService<Data.BloggingContext>().Database.EnsureCreated();
+            }
 
             if (env.IsDevelopment())
             {

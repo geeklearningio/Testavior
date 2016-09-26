@@ -8,6 +8,7 @@ using TechTalk.SpecFlow.Assist;
 using System.Net.Http;
 using GeekLearning.Test.Integration.Sample.Data;
 using Microsoft.Extensions.DependencyInjection;
+using GeekLearning.Test.Integration.Mvc;
 
 namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs.Web
 {
@@ -18,13 +19,15 @@ namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs.Web
         public void WhenIGetTheListOfBlogs()
         {
             var testEnvironment = ScenarioContext.Current.Get<ITestEnvironment>("TestEnvironment");
-            var response = testEnvironment.Client.GetAsync("/blogs").Result;
+            var response = testEnvironment.Client.GetAsync("/").Result;
             response.EnsureSuccessStatusCode();
         }
 
         [Then(@"the result must be the following model")]
         public void ThenTheResultMustBeTheFollowingList(Table expectedResult)
         {
+            var testEnvironment = ScenarioContext.Current.Get<ITestEnvironment>("TestEnvironment");
+            var viewModelRepository = testEnvironment.ServiceProvider.GetRequiredService<ViewModelRepository>();
             var blogListResult = expectedResult.CreateSet<Blog>();
         }
     }
