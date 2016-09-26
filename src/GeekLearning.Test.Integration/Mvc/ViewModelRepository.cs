@@ -13,7 +13,7 @@
             {
                 throw new ArgumentException($"The model {model.GetType().Name} is already registered");
             }
-        }
+        } 
 
         public TModel Get<TModel>() where TModel : class
         {
