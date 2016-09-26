@@ -9,13 +9,13 @@
 
         public void Add<TModel>(TModel model) where TModel : class
         {
-            if (!this.repository.TryAdd(typeof(TModel), model))
+            if (!this.repository.TryAdd(model.GetType(), model))
             {
-                throw new ArgumentException($"The model {typeof(TModel).Name} is already registered");
+                throw new ArgumentException($"The model {model.GetType().Name} is already registered");
             }
         }
 
-        internal TModel Get<TModel>() where TModel : class
+        public TModel Get<TModel>() where TModel : class
         {
             object value;
             this.repository.TryGetValue(typeof(TModel), out value);
