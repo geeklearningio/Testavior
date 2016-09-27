@@ -9,7 +9,7 @@
     // http://www.stefanhendriks.com/2016/05/11/integration-testing-your-asp-net-core-app-dealing-with-anti-request-forgery-csrf-formdata-and-cookies/
     public static class PostRequestHelper
     {
-        public static HttpRequestMessage CreatePostMessage(this object content, string path, Dictionary<string, string> additionalFormPostBodyData = null)
+        public static HttpContent CreatePostMessageContent(this object content, string path, Dictionary<string, string> additionalFormPostBodyData = null)
         {
             var properties = content.GetType().GetProperties();
 
@@ -24,17 +24,12 @@
                 additionalFormPostBodyData.ToList().ForEach(data => propValues.Add(data.Key, data.Value));
             }
 
-            return CreatePostMessage(path, propValues);
+            return CreatePostMessageContent(path, propValues);
         }
 
-        public static HttpRequestMessage CreatePostMessage(string path, Dictionary<string, string> formPostBodyData)
+        public static HttpContent CreatePostMessageContent(string path, Dictionary<string, string> formPostBodyData)
         {
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, path)
-            {
-                Content = new FormUrlEncodedContent(ToFormPostData(formPostBodyData))
-            };
-
-            return httpRequestMessage;
+            return new FormUrlEncodedContent(ToFormPostData(formPostBodyData));
         }
 
         private static List<KeyValuePair<string, string>> ToFormPostData(Dictionary<string, string> formPostBodyData)
