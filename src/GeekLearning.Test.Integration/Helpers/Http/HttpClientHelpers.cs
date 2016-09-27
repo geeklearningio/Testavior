@@ -24,7 +24,7 @@
             });
             var httpContent = new FormUrlEncodedContent(formUrlEncodedData);
 
-            var requestMsg = new HttpRequestMessage(HttpMethod.Post, responseMsg.RequestMessage.RequestUri)
+            var requestMsg = new HttpRequestMessage(HttpMethod.Post, requestUri)
             {
                 Content = httpContent
             };
