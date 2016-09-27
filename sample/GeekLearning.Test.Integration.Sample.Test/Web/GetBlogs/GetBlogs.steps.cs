@@ -5,6 +5,7 @@ using TechTalk.SpecFlow.Assist;
 using GeekLearning.Test.Integration.Sample.Data;
 using Microsoft.Extensions.DependencyInjection;
 using GeekLearning.Test.Integration.Mvc;
+using System.Net.Http;
 
 namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs.Web
 {
