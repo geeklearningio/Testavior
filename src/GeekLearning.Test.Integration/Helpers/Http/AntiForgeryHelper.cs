@@ -1,14 +1,13 @@
-﻿namespace GeekLearning.Test.Integration.Helpers
+﻿namespace System.Net.Http
 {
     using System;
-    using System.Net.Http;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     // http://www.stefanhendriks.com/2016/05/11/integration-testing-your-asp-net-core-app-dealing-with-anti-request-forgery-csrf-formdata-and-cookies/
     public static class AntiForgeryHelper
     {
-        public static string ExtractAntiForgeryToken(string htmlResponseText)
+        internal static string ExtractAntiForgeryToken(string htmlResponseText)
         {
             if (htmlResponseText == null) throw new ArgumentNullException("htmlResponseText");
 
