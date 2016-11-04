@@ -17,6 +17,14 @@
             }
         }
 
+        public IServiceCollection ServiceCollection
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) { }
 
         public virtual void ConfigureEnvironment(IHostingEnvironment env) { }

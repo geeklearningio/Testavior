@@ -1,6 +1,7 @@
 ﻿namespace GeekLearning.Test.Integration.Environment
 {
     using Microsoft.AspNetCore.TestHost;
+    using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Net.Http;
 
@@ -11,5 +12,7 @@
         HttpClient Client { get; }
 
         IServiceProvider ServiceProvider { get; }
+
+        IServiceCollection ServiceCollection { get; }
     }
 }
