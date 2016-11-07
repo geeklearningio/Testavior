@@ -12,7 +12,5 @@
         HttpClient Client { get; }
 
         IServiceProvider ServiceProvider { get; }
-
-        IServiceCollection ServiceCollection { get; }
     }
 }

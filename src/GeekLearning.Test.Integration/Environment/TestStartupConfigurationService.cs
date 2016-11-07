@@ -20,8 +20,6 @@
 
         public IServiceProvider ServiceProvider { get; private set; }
 
-        public IServiceCollection ServiceCollection { get; private set; }
-
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             ServiceProvider = app.ApplicationServices;
@@ -42,8 +40,6 @@
 
         public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
         {
-            ServiceCollection = services;
-
             services.AddSingleton(typeof(ViewModelRepository));
 
             ConfigureStore(services);

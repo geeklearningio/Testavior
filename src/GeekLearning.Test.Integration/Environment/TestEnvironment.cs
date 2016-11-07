@@ -19,8 +19,6 @@
 
         public IServiceProvider ServiceProvider { get; private set; }
 
-        public IServiceCollection ServiceCollection { get; private set; }
-
         public TestEnvironment(string contentRootPath = null)
         {
             this.contentRootPath = contentRootPath;
@@ -33,7 +31,6 @@
             IStartupConfigurationService externalStartupConfigurationService = new TStartupConfigurationService();
             externalStartupConfigurationService.RegisterExternalStartupConfigured(() =>
             {
-                ServiceCollection = externalStartupConfigurationService.ServiceCollection;
                 ServiceProvider = externalStartupConfigurationService.ServiceProvider;                
             });
 
