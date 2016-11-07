@@ -14,7 +14,7 @@
                     new AuthenticationTicket(
                         new ClaimsPrincipal(Options.Identity),
                         new AuthenticationProperties(),
-                        "TestAuthenticationMiddleware")));
+                        this.Options.AuthenticationScheme)));
         }
     }
 }

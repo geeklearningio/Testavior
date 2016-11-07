@@ -70,7 +70,6 @@
 
         protected virtual void ConfigureStore(IServiceCollection services)
         {
-            services.AddSingleton<TestAuthenticationOptions>();
             var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = ":memory:" };
             var connectionString = connectionStringBuilder.ToString();
             var connection = new SqliteConnection(connectionString);
@@ -78,9 +77,14 @@
             services.AddDbContext<TDbContext>(options => options.UseSqlite(connection));
         }
 
-        protected virtual void ConfigureAuthentication(IServiceCollection services)
+        protected virtual void ConfigureAuthentication(IServiceCollection services, string authenticationScheme = null)
         {
-            services.Configure<TestAuthenticationOptions>(o => o.Identity = ConfigureIdentity());
+            services.AddSingleton<TestAuthenticationOptions>();
+            services.Configure<TestAuthenticationOptions>(o =>
+            {
+                o.AuthenticationScheme = authenticationScheme;
+                o.Identity = ConfigureIdentity();
+            });
         }
 
         protected virtual ClaimsIdentity ConfigureIdentity()
