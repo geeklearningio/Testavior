@@ -2,7 +2,6 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;
-    using System;
 
     public class SaveViewModelResultFilter : IResultFilter
     {

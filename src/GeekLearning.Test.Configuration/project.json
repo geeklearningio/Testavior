@@ -9,18 +9,13 @@
   },
 
   "dependencies": {
-    "Microsoft.Data.Sqlite": "1.0.0",
-    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.1",
-    "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
-    "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
-    "NETStandard.Library": "1.6.0",
-    "Microsoft.AspNetCore.Mvc.Core": "1.0.1"
+    "NETStandard.Library": "1.6.1",
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.1.0",
+    "Microsoft.AspNetCore.Mvc.Core": "1.1.0"
   },
 
   "frameworks": {
-    "netstandard1.6": {
-      "imports": "dnxcore50"
-    },
+    "netstandard1.6": {},
     "net451": {}
   }
 }
