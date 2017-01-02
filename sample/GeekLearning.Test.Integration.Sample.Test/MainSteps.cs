@@ -1,12 +1,12 @@
-﻿using GeekLearning.Test.Integration.Environment;
-using GeekLearning.Test.Integration.Sample.Data;
-using Microsoft.Extensions.DependencyInjection;
-using System.IO;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
-
-namespace GeekLearning.Test.Integration.Sample.Test
+﻿namespace GeekLearning.Test.Integration.Sample.Test
 {
+    using Data;
+    using Environment;
+    using Microsoft.Extensions.DependencyInjection;
+    using System.IO;
+    using TechTalk.SpecFlow;
+    using TechTalk.SpecFlow.Assist;
+
     [Binding]
     public class MainSteps
     {

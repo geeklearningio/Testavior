@@ -1,12 +1,12 @@
-﻿using GeekLearning.Test.Integration.Environment;
-using System.Linq;
-using TechTalk.SpecFlow;
-using System.Net.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Xunit;
-
-namespace GeekLearning.Test.Integration.Sample.Test.Web.CreateBlog
+﻿namespace GeekLearning.Test.Integration.Sample.Test.Web.CreateBlog
 {
+    using Environment;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Net.Http;
+    using TechTalk.SpecFlow;
+
     [Binding]
     public class CreateBlogSteps
     {
@@ -23,7 +23,7 @@ namespace GeekLearning.Test.Integration.Sample.Test.Web.CreateBlog
         {
             using (var serviceScope = ScenarioContext.Current.Get<ITestEnvironment>("TestEnvironment").ServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                Assert.NotNull(serviceScope.ServiceProvider.GetService<Data.BloggingContext>()
+                Assert.IsNotNull(serviceScope.ServiceProvider.GetService<Data.BloggingContext>()
                                                            .Blogs
                                                            .FirstOrDefault(b => b.Url == blogUrl));
             }

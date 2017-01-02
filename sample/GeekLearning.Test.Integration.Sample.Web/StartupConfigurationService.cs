@@ -1,6 +1,6 @@
 ﻿namespace GeekLearning.Test.Integration.Sample
 {
-    using GeekLearning.Test.Configuration.Startup;
+    using Configuration.Startup;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

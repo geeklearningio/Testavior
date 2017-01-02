@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using GeekLearning.Test.Configuration.Startup;
-using Microsoft.EntityFrameworkCore;
-
-namespace GeekLearning.Test.Integration.Sample
+﻿namespace GeekLearning.Test.Integration.Sample
 {
+    using Configuration.Startup;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+
     public class Startup
     {
         private IStartupConfigurationService externalStartupConfiguration;

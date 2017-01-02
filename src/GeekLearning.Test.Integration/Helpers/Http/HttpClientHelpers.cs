@@ -22,6 +22,7 @@
             {
                 formUrlEncodedData.Add(new KeyValuePair<string, string>(key, contentData[key]));
             });
+
             var httpContent = new FormUrlEncodedContent(formUrlEncodedData);
 
             var requestMsg = new HttpRequestMessage(HttpMethod.Post, requestUri)

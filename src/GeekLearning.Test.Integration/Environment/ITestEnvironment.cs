@@ -1,7 +1,6 @@
 ﻿namespace GeekLearning.Test.Integration.Environment
 {
     using Microsoft.AspNetCore.TestHost;
-    using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Net.Http;
 

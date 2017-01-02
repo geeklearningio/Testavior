@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using GeekLearning.Test.Integration.Sample.Data;
-
-namespace GeekLearning.Test.Integration.Sample.Controllers.Web
+﻿namespace GeekLearning.Test.Integration.Sample.Controllers.Web
 {
+    using Data;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Linq;
+
     [Route("blogs")]
     public class BlogsController : Controller
     {

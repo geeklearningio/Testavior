@@ -1,8 +1,8 @@
 ﻿namespace System.Net.Http
 {
     using System;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
+    using Text.RegularExpressions;
+    using Threading.Tasks;
 
     // http://www.stefanhendriks.com/2016/05/11/integration-testing-your-asp-net-core-app-dealing-with-anti-request-forgery-csrf-formdata-and-cookies/
     public static class AntiForgeryHelper

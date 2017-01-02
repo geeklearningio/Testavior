@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using GeekLearning.Test.Integration.Sample.Data;
-using Microsoft.EntityFrameworkCore;
-
-namespace GeekLearning.Test.Integration.Sample.Controllers.Api
+﻿namespace GeekLearning.Test.Integration.Sample.Controllers.Api
 {
+    using Data;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     [Route("api/blogs")]
     public class BlogsController : Controller
     {

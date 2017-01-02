@@ -1,16 +1,12 @@
-﻿using GeekLearning.Test.Integration.Environment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
-using System.Net.Http;
-using GeekLearning.Test.Integration.Sample.Data;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs.Api
+﻿namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs.Api
 {
+    using Data;
+    using Environment;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using TechTalk.SpecFlow;
+    using TechTalk.SpecFlow.Assist;
+
     [Binding]
     public class GetBlogsSteps
     {
