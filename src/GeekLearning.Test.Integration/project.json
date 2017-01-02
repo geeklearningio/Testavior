@@ -10,33 +10,28 @@
 
   "dependencies": {
     "GeekLearning.Test.Configuration": "0.0.1-*",
-    "Microsoft.AspNetCore.Authentication": "1.0.0",
-    "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
-    "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
-    "Microsoft.AspNetCore.Mvc.Abstractions": "1.0.1",
-    "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.1",
-    "Microsoft.AspNetCore.TestHost": "1.0.0",
-    "Microsoft.Data.Sqlite": "1.0.0",
-    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.1",
-    "Microsoft.Extensions.Configuration.Abstractions": "1.0.0",
-    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
-    "Microsoft.Extensions.Options": "1.0.0",
-    "NETStandard.Library": "1.6.0",
-    "System.Collections.Concurrent": "4.0.12"
+    "Microsoft.AspNetCore.Authentication": "1.1.0",
+    "Microsoft.AspNetCore.Hosting.Abstractions": "1.1.0",
+    "Microsoft.AspNetCore.Http.Abstractions": "1.1.0",
+    "Microsoft.AspNetCore.Mvc.Abstractions": "1.1.0",
+    "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.1.0",
+    "Microsoft.AspNetCore.TestHost": "1.1.0",
+    "Microsoft.Data.Sqlite": "1.1.0",
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.1.0",
+    "Microsoft.Extensions.Configuration.Abstractions": "1.1.0",
+    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+    "Microsoft.Extensions.Options": "1.1.0",
+    "NETStandard.Library": "1.6.1",
+    "System.Collections.Concurrent": "4.3.0",
+    "System.ComponentModel": "4.3.0"
   },
 
   "frameworks": {
     "netstandard1.6": {
-      "dependencies": {
-        "System.ComponentModel": "4.0.1",
-        "System.Runtime": "4.1.0",
-        "System.Net.Http": "4.1.0"
-      }
+      "dependencies": {}
     },
     "net451": {
-      "System.ComponentModel": "4.0.0",
-      "System.Runtime": "4.0.0",
-      "System.Net.Http": "4.0.0"
+      "dependencies": {}
     }
   }
 }
