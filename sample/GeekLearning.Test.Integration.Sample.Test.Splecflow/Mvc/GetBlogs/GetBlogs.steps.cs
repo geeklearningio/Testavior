@@ -1,9 +1,9 @@
-﻿namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs.Web
+﻿namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs.Mvc
 {
     using Data;
     using Environment;
+    using Integration.Mvc;
     using Microsoft.Extensions.DependencyInjection;
-    using Mvc;
     using System.Collections.Generic;
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;

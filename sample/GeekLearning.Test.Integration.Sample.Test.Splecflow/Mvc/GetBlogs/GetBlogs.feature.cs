@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlow.GeneratedTests.Web.GetBlogs
+namespace SpecFlow.GeneratedTests.Mvc.GetBlogs
 {
     using TechTalk.SpecFlow;
     
@@ -48,7 +48,7 @@ namespace SpecFlow.GeneratedTests.Web.GetBlogs
             if (((TechTalk.SpecFlow.FeatureContext.Current != null) 
                         && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "Get blogs")))
             {
-                SpecFlow.GeneratedTests.Web.GetBlogs.GetBlogsFeature.FeatureSetup(null);
+                SpecFlow.GeneratedTests.Mvc.GetBlogs.GetBlogsFeature.FeatureSetup(null);
             }
         }
         

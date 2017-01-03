@@ -1,6 +1,7 @@
 ﻿namespace GeekLearning.Test.Integration
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
@@ -10,6 +11,12 @@
         public static void IsEqual<TEntity>(this TEntity actual, TEntity expected, params string[] ignoredProperties)
             where TEntity : class
         {
+            if (actual.GetType().GetInterfaces().Contains(typeof(IEnumerable)))
+            {
+                IsEqual((IEnumerable<object>)actual, (IEnumerable<object>)expected, ignoredProperties);
+                return;
+            }
+
             PropertyInfo[] properties = expected.GetType().GetProperties();
             if (ignoredProperties != null)
             {

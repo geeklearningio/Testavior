@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Sample.Test.Web.CreateBlog
+﻿namespace GeekLearning.Test.Integration.Sample.Test.Mvc.CreateBlog
 {
     using Environment;
     using Microsoft.Extensions.DependencyInjection;
