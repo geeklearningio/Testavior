@@ -8,15 +8,15 @@
 
     "dotnet-test-mstest": "1.1.2-preview",
     "MSTest.TestFramework": "1.0.7-preview",
-
-    "SpecFlow": "2.1.0",
-
+    
+    "SpecFlow": "1.9.0",
+    
     "GeekLearning.Test.Integration": "*",
     "GeekLearning.Test.Integration.Sample.Web": "*"
   },
 
   "frameworks": {
-    "net462": {}
+    "net461": {}
   },
 
   "tools": {
