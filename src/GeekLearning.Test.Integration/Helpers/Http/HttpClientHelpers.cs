@@ -48,7 +48,7 @@
                 {
                     foreach (var childValue in property.Value.Children<JValue>().ToList())
                     {
-                        content[childValue.Path] = childValue.Value.ToString();
+                        content[childValue.Path] = FormatValue(childValue);
                     }
                 }
                 else if (property.Value.Type == JTokenType.Object)
@@ -60,8 +60,24 @@
                 }
                 else
                 {
-                    content[property.Path] = property.Value.ToString();
+                    content[property.Path] = FormatValue(property.Value as JValue);
                 }
+            }
+        }
+
+        private static string FormatValue(JValue value)
+        {
+            if (value == null)
+            {
+                return null;
+            }
+
+            switch (value.Type)
+            {
+                case JTokenType.Date:
+                    return value.ToString("o");
+                default:
+                    return value.ToString();
             }
         }
     }
