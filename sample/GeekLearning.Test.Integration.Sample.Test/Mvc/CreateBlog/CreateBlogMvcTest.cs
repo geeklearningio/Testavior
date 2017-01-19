@@ -19,9 +19,10 @@
 
             using (var serviceScope = base.TestEnvironment.ServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                Assert.IsNotNull(serviceScope.ServiceProvider.GetService<Data.BloggingContext>()
-                                                           .Blogs
-                                                           .FirstOrDefault(b => b.Url == "http://blog4.io"));
+                Assert.IsNotNull(serviceScope.ServiceProvider
+                                             .GetService<Data.BloggingContext>()
+                                             .Blogs
+                                             .FirstOrDefault(b => b.Url == "http://blog4.io"));
             }
         }
     }
