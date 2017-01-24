@@ -16,7 +16,5 @@
         void ConfigureEnvironment(IHostingEnvironment env);
 
         void ConfigureService(IServiceCollection services, IConfigurationRoot configuration);
-
-        void RegisterExternalStartupConfigured(Action callback);
     }
 }

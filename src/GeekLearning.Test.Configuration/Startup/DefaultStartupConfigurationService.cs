@@ -17,23 +17,10 @@
             }
         }
 
-        public IServiceCollection ServiceCollection
-        {
-            get
-            {
-                return null;
-            }
-        }
-
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) { }
 
         public virtual void ConfigureEnvironment(IHostingEnvironment env) { }
 
         public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration) { }
-
-        public virtual void RegisterExternalStartupConfigured(Action callback)
-        {
-            callback();
-        }
     }
 }
