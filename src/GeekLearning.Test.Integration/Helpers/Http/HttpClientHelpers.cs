@@ -10,29 +10,15 @@
     {
         public static async Task<HttpResponseMessage> PostAsJsonAntiForgeryAsync<TContent>(this HttpClient httpClient, string requestUri, TContent content)
         {
-            var o = JObject.FromObject(content);
-            var contentData = new Dictionary<string, string>();
-            foreach (var property in o.Properties())
-            {
-                ExtractContent(property, contentData);
-            }
+            IDictionary<string, string> contentData = ExtractContent(content);
 
             var responseMsg = await httpClient.GetAsync(requestUri);
             var antiForgeryToken = await responseMsg.ExtractAntiForgeryTokenAsync();
-
             contentData.Add("__RequestVerificationToken", antiForgeryToken);
-
-            List<KeyValuePair<string, string>> formUrlEncodedData = new List<KeyValuePair<string, string>>();
-            contentData.Keys.ToList().ForEach(key =>
-            {
-                formUrlEncodedData.Add(new KeyValuePair<string, string>(key, contentData[key]));
-            });
-
-            var httpContent = new FormUrlEncodedContent(formUrlEncodedData);
 
             var requestMsg = new HttpRequestMessage(HttpMethod.Post, requestUri)
             {
-                Content = httpContent
+                Content = new FormUrlEncodedContent(contentData)
             };
 
             CookiesHelper.CopyCookiesFromResponse(requestMsg, responseMsg);
@@ -40,44 +26,34 @@
             return await httpClient.SendAsync(requestMsg);
         }
 
-        private static void ExtractContent(JProperty property, IDictionary<string, string> content)
+        private static IDictionary<string, string> ExtractContent(object metaToken)
         {
-            if (property.HasValues)
+            var token = metaToken as JToken;
+            if (token == null)
             {
-                if (property.Value.Type == JTokenType.Array)
-                {
-                    foreach (var childValue in property.Value.Children<JValue>().ToList())
-                    {
-                        content[childValue.Path] = FormatValue(childValue);
-                    }
-                }
-                else if (property.Value.Type == JTokenType.Object)
-                {
-                    foreach (var childProperty in property.Value.Children<JProperty>())
-                    {
-                        ExtractContent(childProperty, content);
-                    }
-                }
-                else
-                {
-                    content[property.Path] = FormatValue(property.Value as JValue);
-                }
-            }
-        }
-
-        private static string FormatValue(JValue value)
-        {
-            if (value == null)
-            {
-                return null;
+                return ExtractContent(JObject.FromObject(metaToken));
             }
 
-            switch (value.Type)
+            if (token.HasValues)
             {
+                var contentData = new Dictionary<string, string>();
+                foreach (JToken child in token.Children().ToList())
+                {
+                    contentData = contentData.Concat(ExtractContent(child)).ToDictionary(k => k.Key, v => v.Value);
+                }
+
+                return contentData;
+            }
+
+            var value = token as JValue;
+            switch (value?.Type)
+            {
+                case null:
+                    return new Dictionary<string, string> { { token.Path, null } };
                 case JTokenType.Date:
-                    return value.ToString("o");
+                    return new Dictionary<string, string> { { token.Path, value.ToString("o") } };
                 default:
-                    return value.ToString();
+                    return new Dictionary<string, string> { { token.Path, value.ToString() } };
             }
         }
     }
