@@ -16,7 +16,13 @@
 
         public HttpClient Client { get; }
 
-        public IServiceProvider ServiceProvider { get; private set; }
+        public IServiceProvider ServiceProvider
+        {
+            get
+            {
+                return this.Server?.Host?.Services;
+            }
+        }
 
         public TestEnvironment(string contentRootPath = null)
         {
@@ -27,13 +33,12 @@
 
         protected virtual TestServer CreateTestServer()
         {
-            IStartupConfigurationService externalStartupConfigurationService = new TStartupConfigurationService();
-            externalStartupConfigurationService.RegisterExternalStartupConfigured(() =>
-            {
-                ServiceProvider = externalStartupConfigurationService.ServiceProvider;                
-            });
-
-            return new TestServer(new WebHostBuilder().ConfigureStartup(externalStartupConfigurationService, this.contentRootPath).UseStartup<TStartup>());
+            return new TestServer
+            (
+                new WebHostBuilder()
+                        .ConfigureStartup(new TStartupConfigurationService(), this.contentRootPath)
+                        .UseStartup<TStartup>()
+            );
         }
     }
 }

@@ -16,8 +16,6 @@
     public class TestStartupConfigurationService<TDbContext> : IStartupConfigurationService
         where TDbContext : DbContext
     {
-        private Action externalStartupConfiguredCallback;
-
         public IServiceProvider ServiceProvider { get; private set; }
 
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -29,8 +27,6 @@
             SetupStore(app);
 
             app.AddTestFilter<SaveViewModelResultFilter>();
-
-            this.externalStartupConfiguredCallback();
         }
 
         public virtual void ConfigureEnvironment(IHostingEnvironment env)
@@ -45,11 +41,6 @@
             ConfigureStore(services);
 
             ConfigureAuthentication(services);
-        }
-
-        public void RegisterExternalStartupConfigured(Action callback)
-        {
-            this.externalStartupConfiguredCallback = callback;
         }
 
         protected virtual void SetupStore(IApplicationBuilder app)
