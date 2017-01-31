@@ -3,6 +3,7 @@
     using Environment;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
     using System.Linq;
     using System.Net.Http;
     using TechTalk.SpecFlow;
@@ -23,9 +24,10 @@
         {
             using (var serviceScope = ScenarioContext.Current.Get<ITestEnvironment>("TestEnvironment").ServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                Assert.IsNotNull(serviceScope.ServiceProvider.GetService<Data.BloggingContext>()
-                                                           .Blogs
-                                                           .FirstOrDefault(b => b.Url == blogUrl));
+                Assert.IsNotNull(serviceScope.ServiceProvider
+                                             .GetService<Data.BloggingContext>()
+                                             .Blogs
+                                             .FirstOrDefault(b => b.Url == Uri.EscapeDataString(blogUrl)));
             }
         }
     }
