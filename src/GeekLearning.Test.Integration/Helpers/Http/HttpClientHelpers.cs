@@ -2,6 +2,7 @@
 {
     using Collections.Generic;
     using GeekLearning.Test.Integration.Helpers;
+    using Globalization;
     using Linq;
     using Newtonsoft.Json.Linq;
     using System.Threading.Tasks;
@@ -28,7 +29,12 @@
 
         private static IDictionary<string, string> ExtractContent(object metaToken)
         {
-            var token = metaToken as JToken;
+            if (metaToken == null)
+            {
+                return null;
+            }
+
+            JToken token = metaToken as JToken;
             if (token == null)
             {
                 return ExtractContent(JObject.FromObject(metaToken));
@@ -37,7 +43,7 @@
             if (token.HasValues)
             {
                 var contentData = new Dictionary<string, string>();
-                foreach (JToken child in token.Children().ToList())
+                foreach (var child in token.Children().ToList())
                 {
                     contentData = contentData.Concat(ExtractContent(child)).ToDictionary(k => k.Key, v => v.Value);
                 }
@@ -45,16 +51,12 @@
                 return contentData;
             }
 
-            var value = token as JValue;
-            switch (value?.Type)
-            {
-                case null:
-                    return new Dictionary<string, string> { { token.Path, null } };
-                case JTokenType.Date:
-                    return new Dictionary<string, string> { { token.Path, value.ToString("o") } };
-                default:
-                    return new Dictionary<string, string> { { token.Path, value.ToString() } };
-            }
+            var jValue = token as JValue;
+            var value = jValue?.Type == JTokenType.Date ?
+                            jValue?.ToString("o", CultureInfo.InvariantCulture) :
+                            jValue?.ToString(CultureInfo.InvariantCulture);
+
+            return new Dictionary<string, string> { { token.Path, Uri.EscapeDataString(value ?? string.Empty) } };
         }
     }
 }

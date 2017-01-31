@@ -2,6 +2,7 @@
 {
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
     using System.Linq;
     using System.Net.Http;
 
@@ -22,7 +23,7 @@
                 Assert.IsNotNull(serviceScope.ServiceProvider
                                              .GetService<Data.BloggingContext>()
                                              .Blogs
-                                             .FirstOrDefault(b => b.Url == "http://blog4.io"));
+                                             .FirstOrDefault(b => b.Url == Uri.EscapeDataString("http://blog4.io")));
             }
         }
     }
