@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Environment
+﻿namespace GeekLearning.Test.Configuration.Startup
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -22,10 +22,5 @@
         public virtual void ConfigureEnvironment(IHostingEnvironment env) { }
 
         public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration) { }
-
-        public virtual void RegisterExternalStartupConfigured(Action callback)
-        {
-            callback();
-        }
     }
 }

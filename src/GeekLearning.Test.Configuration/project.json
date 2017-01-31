@@ -1,0 +1,21 @@
+{
+  "version": "0.0.1-*",
+  "description": "Configure your projects to easily integrate integration tests.",
+  "authors": [ "Geek Learning", "Arnaud Auroux", "Adrien Siffermann", "Cyprien Autexier" ],
+  "packOptions": {
+    "tags": [ "dotnet", "AspNetCore", "UnitTest", "Test" ],
+    "projectUrl": "https://github.com/geeklearningio/gl-dotnet-test-integration",
+    "licenseUrl": ""
+  },
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.1.0",
+    "Microsoft.AspNetCore.Mvc.Core": "1.1.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {},
+    "net451": {}
+  }
+}

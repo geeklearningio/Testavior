@@ -1,6 +1,7 @@
 ﻿namespace GeekLearning.Test.Integration.Environment
 {
     using Authentication;
+    using Configuration.Startup;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Data.Sqlite;
@@ -8,14 +9,13 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Mvc;
     using System;
     using System.Security.Claims;
 
     public class TestStartupConfigurationService<TDbContext> : IStartupConfigurationService
         where TDbContext : DbContext
     {
-        private Action externalStartupConfiguredCallback;
-
         public IServiceProvider ServiceProvider { get; private set; }
 
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -26,24 +26,21 @@
 
             SetupStore(app);
 
-            this.externalStartupConfiguredCallback();
+            app.AddTestFilter<SaveViewModelResultFilter>();
         }
 
         public virtual void ConfigureEnvironment(IHostingEnvironment env)
         {
-            env.EnvironmentName = "Development";
+            env.EnvironmentName = "Test";
         }
 
         public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
         {
+            services.AddSingleton(typeof(ViewModelRepository));
+
             ConfigureStore(services);
 
             ConfigureAuthentication(services);
-        }
-
-        public void RegisterExternalStartupConfigured(Action callback)
-        {
-            this.externalStartupConfiguredCallback = callback;
         }
 
         protected virtual void SetupStore(IApplicationBuilder app)
@@ -64,7 +61,6 @@
 
         protected virtual void ConfigureStore(IServiceCollection services)
         {
-            services.AddSingleton<TestAuthenticationOptions>();
             var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = ":memory:" };
             var connectionString = connectionStringBuilder.ToString();
             var connection = new SqliteConnection(connectionString);
@@ -72,9 +68,14 @@
             services.AddDbContext<TDbContext>(options => options.UseSqlite(connection));
         }
 
-        protected virtual void ConfigureAuthentication(IServiceCollection services)
+        protected virtual void ConfigureAuthentication(IServiceCollection services, string authenticationScheme = null)
         {
-            services.Configure<TestAuthenticationOptions>(o => o.Identity = ConfigureIdentity());
+            services.AddSingleton<TestAuthenticationOptions>();
+            services.Configure<TestAuthenticationOptions>(o =>
+            {
+                o.AuthenticationScheme = authenticationScheme;
+                o.Identity = ConfigureIdentity();
+            });
         }
 
         protected virtual ClaimsIdentity ConfigureIdentity()

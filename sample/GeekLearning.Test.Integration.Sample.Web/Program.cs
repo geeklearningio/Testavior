@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-
-namespace GeekLearning.Test.Integration.Sample
+﻿namespace GeekLearning.Test.Integration.Sample
 {
+    using Microsoft.AspNetCore.Hosting;
+    using System.IO;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -18,7 +14,7 @@ namespace GeekLearning.Test.Integration.Sample
                 .UseStartup<Startup>()
                 .ConfigureStartup<StartupConfigurationService>()
                 .Build()
-                .Run();            
+                .Run();
         }
     }
 }

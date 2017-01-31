@@ -11,7 +11,7 @@ Scenario: Get blogs should be ok
 	| http://blog1.io |
 	| http://blog2.io |
 	| http://blog3.io |
-	When I get the list of blogs
+	When I get the list of blogs from Api
 	Then the result must be the following list
 	| Url             |
 	| http://blog1.io |
