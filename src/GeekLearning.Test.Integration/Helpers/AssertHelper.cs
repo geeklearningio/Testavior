@@ -11,9 +11,10 @@
         public static void IsEqual<TEntity>(this TEntity actual, TEntity expected, params string[] ignoredProperties)
             where TEntity : class
         {
-            if (actual.GetType().GetInterfaces().Contains(typeof(IEnumerable)))
+            var actualType = actual.GetType();
+            if (actualType != typeof(string) && actualType.GetInterfaces().Contains(typeof(IEnumerable)))
             {
-                IsEqual((IEnumerable<object>)actual, (IEnumerable<object>)expected, ignoredProperties);
+                IsEqual((IEnumerable)actual, (IEnumerable)expected, ignoredProperties);
                 return;
             }
 
@@ -31,9 +32,29 @@
                 PropertyInfo property = array[i];
                 object expectedValue = property.GetValue(expected, null);
                 object actualValue = property.GetValue(actual, null);
-                if (!object.Equals(expectedValue, actualValue))
+
+                if (expectedValue == null && actualValue == null)
+                {
+                    continue;
+                }
+
+                if (expectedValue == null && actualValue != null || expectedValue != null && actualValue == null)
                 {
                     throw new AssertionException($"Property {property.DeclaringType.Name}.{property.Name} does not match. Expected: {expectedValue} but was: {actualValue}");
+                }
+
+                var expectedValueType = expectedValue.GetType();
+                if ((expectedValueType.IsValueType || expectedValueType == typeof(string)) && !object.Equals(expectedValue, actualValue))
+                {
+                    throw new AssertionException($"Property {property.DeclaringType.Name}.{property.Name} does not match. Expected: {expectedValue} but was: {actualValue}");
+                }
+                else if (expectedValueType.GetInterfaces().Contains(typeof(IEnumerable)))
+                {
+                    IsEqual((IEnumerable)expectedValue, (IEnumerable)actualValue, ignoredProperties);
+                }
+                else
+                {
+                    IsEqual(expectedValue, actualValue);
                 }
             }
         }
@@ -45,24 +66,28 @@
         /// <param name="expected">The expected.</param>
         /// <param name="actual">The actual.</param>
         /// <param name="ignoredProperties">The ignored properties.</param>
-        public static void IsEqual<TEntity>(this IEnumerable<TEntity> expected, IEnumerable<TEntity> actual, params string[] ignoredProperties)
-            where TEntity : class
+        public static void IsEqual(this IEnumerable expected, IEnumerable actual, params string[] ignoredProperties)
         {
-            if (expected?.Count() != actual?.Count())
-            {
-                throw new AssertionException($"Expected and actual list count are not equal");
-            }
-
-            if ((expected == null || expected.Count<TEntity>() == 0) && (actual == null || actual.Count<TEntity>() == 0))
+            if (expected == null && actual == null)
             {
                 return;
             }
-      
-            List<TEntity> expectedList = expected.ToList<TEntity>();
-            List<TEntity> actualList = actual.ToList<TEntity>();
-            for (int i = 0; i < expectedList.Count; i++)
+
+            var expectedEnumerator = expected.GetEnumerator();
+            var actualEnumerator = actual.GetEnumerator();
+
+            bool expectedEnumeratorMoved = expectedEnumerator.MoveNext();
+            bool actualEnumeratorMoved = actualEnumerator.MoveNext();
+            while (expectedEnumeratorMoved && actualEnumeratorMoved)
             {
-                actualList[i].IsEqual(expectedList[i], ignoredProperties);
+                expectedEnumerator.Current.IsEqual(actualEnumerator.Current, ignoredProperties);
+                expectedEnumeratorMoved = expectedEnumerator.MoveNext();
+                actualEnumeratorMoved = actualEnumerator.MoveNext();
+            }
+
+            if (expectedEnumeratorMoved != actualEnumeratorMoved)
+            {
+                throw new AssertionException($"Expected and actual list count are not equal");
             }
         }
     }
