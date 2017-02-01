@@ -44,7 +44,7 @@
                 }
 
                 var expectedValueType = expectedValue.GetType();
-                if ((expectedValueType.IsValueType || expectedValueType == typeof(string)) && !object.Equals(expectedValue, actualValue))
+                if ((expectedValueType.GetTypeInfo().IsValueType || expectedValueType == typeof(string)) && !object.Equals(expectedValue, actualValue))
                 {
                     throw new AssertionException($"Property {property.DeclaringType.Name}.{property.Name} does not match. Expected: {expectedValue} but was: {actualValue}");
                 }
