@@ -26,7 +26,7 @@
             {
                 Content = new FormUrlEncodedContent(contentData)
             };
-            
+
             CookiesHelper.CopyCookiesFromResponse(requestMsg, responseMsg);
 
             return await httpClient.SendAsync(requestMsg);
@@ -50,17 +50,26 @@
                 var contentData = new Dictionary<string, string>();
                 foreach (var child in token.Children().ToList())
                 {
-                    contentData = contentData.Concat(ExtractContent(child)).ToDictionary(k => k.Key, v => v.Value);
+                    var childContent = ExtractContent(child);
+                    if (childContent != null)
+                    {
+                        contentData = contentData.Concat(childContent).ToDictionary(k => k.Key, v => v.Value);
+                    }
                 }
 
                 return contentData;
             }
 
             var jValue = token as JValue;
+            if (jValue?.Value == null)
+            {
+                return null;
+            }
+
             var value = jValue?.Type == JTokenType.Date ?
                             jValue?.ToString("o", CultureInfo.InvariantCulture) :
                             jValue?.ToString(CultureInfo.InvariantCulture);
-
+       
             return new Dictionary<string, string> { { token.Path, value } };
         }
     }
