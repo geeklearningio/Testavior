@@ -26,7 +26,7 @@
             {
                 Content = new FormUrlEncodedContent(contentData)
             };
-
+            
             CookiesHelper.CopyCookiesFromResponse(requestMsg, responseMsg);
 
             return await httpClient.SendAsync(requestMsg);
@@ -61,7 +61,7 @@
                             jValue?.ToString("o", CultureInfo.InvariantCulture) :
                             jValue?.ToString(CultureInfo.InvariantCulture);
 
-            return new Dictionary<string, string> { { token.Path, Uri.EscapeDataString(value ?? string.Empty) } };
+            return new Dictionary<string, string> { { token.Path, value } };
         }
     }
 }
