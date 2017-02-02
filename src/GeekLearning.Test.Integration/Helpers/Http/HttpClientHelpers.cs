@@ -13,7 +13,12 @@
         {
             IDictionary<string, string> contentData = ExtractContent(content);
 
-            var responseMsg = await httpClient.GetAsync(requestUri);
+            HttpResponseMessage responseMsg = await httpClient.GetAsync(requestUri);
+            if (!responseMsg.IsSuccessStatusCode)
+            {
+                return responseMsg;
+            }
+
             var antiForgeryToken = await responseMsg.ExtractAntiForgeryTokenAsync();
             contentData.Add("__RequestVerificationToken", antiForgeryToken);
 
