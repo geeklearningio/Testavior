@@ -27,7 +27,7 @@
                 Assert.IsNotNull(serviceScope.ServiceProvider
                                              .GetService<Data.BloggingContext>()
                                              .Blogs
-                                             .FirstOrDefault(b => b.Url == Uri.EscapeDataString(blogUrl)));
+                                             .FirstOrDefault(b => b.Url == blogUrl));
             }
         }
     }
