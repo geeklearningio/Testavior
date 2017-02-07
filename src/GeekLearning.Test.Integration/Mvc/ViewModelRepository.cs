@@ -9,10 +9,7 @@
 
         public void Add<TModel>(TModel model) where TModel : class
         {
-            if (!this.repository.TryAdd(model.GetType(), model))
-            {
-                throw new ArgumentException($"The model {model.GetType().Name} is already registered");
-            }
+            this.repository.AddOrUpdate(model.GetType(), model, (t, o) => model);            
         } 
 
         public TModel Get<TModel>() where TModel : class
