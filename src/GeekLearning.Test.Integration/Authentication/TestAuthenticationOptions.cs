@@ -11,7 +11,6 @@
         {
             this.AuthenticationScheme = "TestAuthenticationMiddleware";
             this.AutomaticAuthenticate = true;
-            this.AutomaticChallenge = true;
         }
     }
 }

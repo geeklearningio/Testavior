@@ -1,16 +1,18 @@
 ﻿namespace GeekLearning.Test.Integration.Sample
 {
-    using Configuration.Startup;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
+	using Configuration.Startup;
+	using Microsoft.AspNetCore.Authorization;
+	using Microsoft.AspNetCore.Builder;
+	using Microsoft.AspNetCore.Hosting;
+	using Microsoft.AspNetCore.Mvc.Authorization;
+	using Microsoft.Extensions.DependencyInjection;
+	using Microsoft.Extensions.Logging;
 
-    public class Startup
+	public class Startup
     {
         private IStartupConfigurationService externalStartupConfiguration;
 
-        public Startup(IHostingEnvironment env, IStartupConfigurationService externalStartupConfiguration)
+        public Startup(IHostingEnvironment env, IStartupConfigurationService externalStartupConfiguration = null)
         {
             this.externalStartupConfiguration = externalStartupConfiguration;
             this.externalStartupConfiguration.ConfigureEnvironment(env);
@@ -18,7 +20,9 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().AddFilterCollection();
+			services
+				.AddMvc(c => c.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build())))
+				.AddFilterCollection();
 
             // Pass configuration (IConfigurationRoot) to the configuration service if needed
             this.externalStartupConfiguration.ConfigureService(services, null);
