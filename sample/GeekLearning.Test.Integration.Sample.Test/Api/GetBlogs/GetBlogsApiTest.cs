@@ -2,7 +2,8 @@
 {
     using GeekLearning.Test.Integration.Sample.Data;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Collections.Generic;
+	using Newtonsoft.Json;
+	using System.Collections.Generic;
     using System.Net.Http;
 
     [TestClass]
@@ -16,7 +17,7 @@
             var response = base.TestEnvironment.Client.GetAsync("/api/blogs").Result;
             response.EnsureSuccessStatusCode();
 
-            var result = response.Content.ReadAsAsync<Blog[]>().Result;
+            var result = JsonConvert.DeserializeObject<Blog[]>(response.Content.ReadAsStringAsync().Result);
 
             var expectedResult = new List<Blog>
             {

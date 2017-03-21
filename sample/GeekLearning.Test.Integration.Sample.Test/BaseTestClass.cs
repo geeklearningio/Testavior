@@ -11,7 +11,7 @@
     {
         protected TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>> TestEnvironment { get; } =
              new TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>>(
-                        Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\..\GeekLearning.Test.Integration.Sample.Web"));
+                        Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\GeekLearning.Test.Integration.Sample.Web"));
 
         protected void CreateBlogs()
         {
