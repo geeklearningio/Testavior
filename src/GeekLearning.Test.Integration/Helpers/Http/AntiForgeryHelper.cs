@@ -7,7 +7,7 @@
     // http://www.stefanhendriks.com/2016/05/11/integration-testing-your-asp-net-core-app-dealing-with-anti-request-forgery-csrf-formdata-and-cookies/
     public static class AntiForgeryHelper
     {
-        internal static string ExtractAntiForgeryToken(string htmlResponseText)
+        internal static string ExtractAntiForgeryTokenCore(string htmlResponseText)
         {
             if (htmlResponseText == null) throw new ArgumentNullException("htmlResponseText");
 
@@ -18,7 +18,7 @@
         public static async Task<string> ExtractAntiForgeryTokenAsync(this HttpResponseMessage response)
         {
             string responseAsString = await response.Content.ReadAsStringAsync();
-            return await Task.FromResult(ExtractAntiForgeryToken(responseAsString));
+            return await Task.FromResult(ExtractAntiForgeryTokenCore(responseAsString));
         }
     }
 }
