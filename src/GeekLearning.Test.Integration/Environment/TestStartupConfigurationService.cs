@@ -31,7 +31,7 @@
 
         public virtual void ConfigureEnvironment(IHostingEnvironment env)
         {
-            env.EnvironmentName = "Test";
+            //env.EnvironmentName = "Test";
         }
 
         public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
@@ -87,8 +87,7 @@
                new Claim("http://schemas.microsoft.com/identity/claims/objectidentifier", Guid.NewGuid().ToString()),
                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname", "test"),
                new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname", "test"),
-               new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn", "test"),
-               new Claim("http://schemas.microsoft.com/identity/claims/scope", "user_impersonation")
+               new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn", "test")
             }, "test");
         }
     }
