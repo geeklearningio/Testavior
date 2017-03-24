@@ -31,7 +31,7 @@
 
         public virtual void ConfigureEnvironment(IHostingEnvironment env)
         {
-            //env.EnvironmentName = "Test";
+            env.EnvironmentName = "Test";
         }
 
         public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
