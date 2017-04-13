@@ -17,16 +17,15 @@
         private static IDictionary<string, string> ExtractCookiesFromResponse(HttpResponseMessage response)
         {
             IDictionary<string, string> result = new Dictionary<string, string>();
-            IEnumerable<string> values;
-            if (response.Headers.TryGetValues("Set-Cookie", out values))
-            {
-                SetCookieHeaderValue.ParseList(values.ToList()).ToList().ForEach(cookie =>
-                {
-                    result.Add(cookie.Name, cookie.Value);
-                });
-            }
+			if (response.Headers.TryGetValues("Set-Cookie", out IEnumerable<string> values))
+			{
+				SetCookieHeaderValue.ParseList(values.ToList()).ToList().ForEach(cookie =>
+				{
+					result.Add(cookie.Name, cookie.Value);
+				});
+			}
 
-            return result;
+			return result;
         }
 
         private static HttpRequestMessage PutCookiesOnRequest(HttpRequestMessage request, IDictionary<string, string> cookies)

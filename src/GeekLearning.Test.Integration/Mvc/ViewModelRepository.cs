@@ -14,10 +14,9 @@
 
         public TModel Get<TModel>() where TModel : class
         {
-            object value;
-            this.repository.TryGetValue(typeof(TModel), out value);
+			this.repository.TryGetValue(typeof(TModel), out object value);
 
-            return value as TModel;
+			return value as TModel;
         }
     }
 }
