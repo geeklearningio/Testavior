@@ -11,7 +11,7 @@
     {
         protected TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>> TestEnvironment { get; } =
              new TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>>(
-                        Path.Combine(System.AppContext.BaseDirectory, @"..\..\..\..\..\Sample.Web"));
+                        Path.Combine(System.AppContext.BaseDirectory, @"..\..\..\..\Sample.Web"));
 
         protected void CreateBlogs()
         {
