@@ -32,15 +32,81 @@ On your .NET Core Unit Test project
   ```
   > dotnet add package GeekLearning.SceneTest
   ```
-* Add your ASP.NET Core project as a project reference
+* Add your ASP.NET Core web project as a project reference
 ### Configuration
-The Test environment provided by *SceneTest* is based on a Startup configuration service that let you separate the **Production** environment configuration from the **Test** environment
+The Test environment provided by *SceneTest* is based on a **Startup Configuration Service** that let you separate the **Production** environment configuration from the **Test** environment configuration.
+This configuration service is represented by a contract **IStartupConfigurationService** which define 3 methods: *Configure, ConfigureEnvironment, ConfigureService* that have to be called within the **Startup Routine** to inject environment dependent configuration.  
 
+1 - In your **ASP.NET Core** project:
+* Add a *StartupConfigurationService* class (change name if you wish) to your web project.
+* Implement the **IStartupConfigurationService** interface (optionally, inherit from *DefaultStartupConfigurationService* to use the default empty implementation)
+* Implement the configuration specific to the Production environment and which must not be executed in the Test environment:
+  * *ConfigureServices*: implement the configuration options that are specific to the Production environment
+  * *Configure*: implement the *middleware* configuration specific to the Production environment
+  * *ConfigureEnvironment*: implement what has to be executed before anything
 
+ Sample:
+ ```csharp
+ public class StartupConfigurationService : DefaultStartupConfigurationService
+{
+    public override void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration)
+    {
+        base.ConfigureServices(services, configuration);
 
+        var connection = "CONNECTION_STRING";
+            
+        services.AddDbContext<Data.BloggingContext>(options =>
+            options.UseSqlServer(connection));
+    }
+}
+ ```
+ 
+ 2 - In your **Program** class:  
+ Inject your *StartupConfigurationService* by calling the **ConfigureStartup** method on your **WebHostBuilder**:
+ ```csharp
+ new WebHostBuilder()
+    ...
+    .UseStartup<Startup>()
+    .ConfigureStartup<StartupConfigurationService>()
+ ```
 
+ 3 - In your **Startup** class:
+ * Inject the *IStartupConfigurationService* interface into the Startup class
+ * Call the *ConfigureEnvironment* method at the end of the Startup constructor
+ * Call the *ConfigureServices* method at the end of the original Startup ConfigureServices method
+ * Call the *Configure* method at the beginning of the original Startup Configure method
+ 
+ Sample:
+ ```csharp
+public class Startup
+{
+    private IStartupConfigurationService externalStartupConfiguration;
 
+    public Startup(IHostingEnvironment env, IStartupConfigurationService externalStartupConfiguration = null)
+    {
+        this.externalStartupConfiguration = externalStartupConfiguration;
+        this.externalStartupConfiguration.ConfigureEnvironment(env);
+    }
 
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddMvc()
+
+        // Pass configuration (IConfigurationRoot) to the configuration service if needed
+        this.externalStartupConfiguration.ConfigureServices(services, null);
+    }
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+    {
+        this.externalStartupConfiguration.Configure(app, env, loggerFactory);
+
+        app.UseMvc();
+    }
+}
+
+ ```
+
+  
 
 ### Writing Tests
  

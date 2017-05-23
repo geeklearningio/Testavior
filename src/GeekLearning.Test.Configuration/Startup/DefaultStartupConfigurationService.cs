@@ -21,6 +21,6 @@
 
         public virtual void ConfigureEnvironment(IHostingEnvironment env) { }
 
-        public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration) { }
+        public virtual void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration) { }
     }
 }

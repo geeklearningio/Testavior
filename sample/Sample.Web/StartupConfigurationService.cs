@@ -7,9 +7,9 @@
 
     public class StartupConfigurationService : DefaultStartupConfigurationService
     {
-        public override void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
+        public override void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration)
         {
-            base.ConfigureService(services, configuration);
+            base.ConfigureServices(services, configuration);
 
             var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Gl.Test.Integration.Sample;Trusted_Connection=True;MultipleActiveResultSets=true";
             

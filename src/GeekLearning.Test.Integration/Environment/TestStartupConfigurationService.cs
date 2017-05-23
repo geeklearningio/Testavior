@@ -34,7 +34,7 @@
             env.EnvironmentName = "Test";
         }
 
-        public virtual void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
+        public virtual void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration)
         {
             services.AddSingleton(typeof(ViewModelRepository));
 

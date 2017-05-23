@@ -15,6 +15,6 @@
 
         void ConfigureEnvironment(IHostingEnvironment env);
 
-        void ConfigureService(IServiceCollection services, IConfigurationRoot configuration);
+        void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration);
     }
 }
