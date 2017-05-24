@@ -1,5 +1,5 @@
-# GeekLearning.SceneTest
-*SceneTest* is a set of [NuGet libraries]() to help  you develop **Behavior** Tests for **ASP.NET Core**.  
+# Testavior
+*Testavior* is a set of [NuGet libraries]() to help  you develop **Behavior** Tests for **ASP.NET Core**.  
 
 >Behavior Tests are a way of testing your application features applying different types of behaviors to cover a **functional scenario**.  
 
@@ -7,7 +7,7 @@ It provides a simple and efficient approach to write automated tests for your AS
 For more information about *Behavior Testing* with ASP.NET Core, please take a look here http://geeklearning.io/a-different-approach-to-test-your-asp-net-core-application  
 
 ### Features
-[NAME] provides 2 libraries:
+*Testavior* provides 2 libraries:
 * **Configuration**: Helps you configure your application to easily integrate behavior tests for your scenarios.
 * **Integration**: Provides a featured and highly configurable test environment for your behavior tests:
   * Configured Test WebHost
@@ -103,10 +103,23 @@ public class Startup
         app.UseMvc();
     }
 }
+```
 
- ```
-
-  
 
 ### Writing Tests
- 
+A specific *IStartupConfigurationService* is required for the **Test** environment if you want to implement **Test Specific** configuration.  
+*Testavior* comes with a test specific *IStartupConfigurationService* implementation: **TestStartupConfigurationService** which provide a **Test Environment** full of useful features (see **Features** section).  
+Of course you can implement your own *Test StartupConfigurationService* (by using the onboard TestStartupConfigurationService or not).  
+To create a *Test Environment*, just instanciate the **TestEnvironment** class by passing it your ASP.NET Core application *Startup*, your *IStartupConfigurationService* implementation and the type of your EF Core ObjectContext
+```csharp
+var testEnvironment = new TestEnvironment<Startup, TestStartupConfigurationService<[EF_DB_CONTEXT]>>(
+    Path.Combine(System.AppContext.BaseDirectory, @"[PATH_TO_WEB_APP]"));
+```
+Then you can write your test by just sending web requests using the *Test Environment*:
+```csharp
+var response = testEnvironment.Client.GetAsync("/api/data").Result;
+response.EnsureSuccessStatusCode();
+
+// test the response.Content
+// ...
+```
