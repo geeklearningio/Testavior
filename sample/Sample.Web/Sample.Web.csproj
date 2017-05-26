@@ -5,7 +5,7 @@
 </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\GeekLearning.Test.Configuration\GeekLearning.Test.Configuration.csproj" />
+    <ProjectReference Include="..\..\src\GeekLearning.Testavior.Configuration\GeekLearning.Testavior.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>

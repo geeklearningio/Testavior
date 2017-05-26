@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Helpers.Http
+﻿namespace GeekLearning.Testavior.Helpers.Http
 {
     using Newtonsoft.Json.Linq;
     using System.Collections.Generic;

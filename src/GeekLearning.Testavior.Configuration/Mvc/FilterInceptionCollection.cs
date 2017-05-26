@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Configuration.Mvc
+﻿namespace GeekLearning.Testavior.Configuration.Mvc
 {
     using System;
     using System.Collections.ObjectModel;

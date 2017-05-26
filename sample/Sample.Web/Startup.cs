@@ -1,7 +1,7 @@
-﻿namespace GeekLearning.Test.Integration.Sample
+﻿namespace GeekLearning.Testavior.Sample
 {
-	using Configuration.Startup;
-	using Microsoft.AspNetCore.Authorization;
+    using GeekLearning.Testavior.Configuration.Startup;
+    using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Mvc.Authorization;

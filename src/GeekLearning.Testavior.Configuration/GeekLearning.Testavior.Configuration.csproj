@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Configure your projects to easily integrate integration tests.</Description>
+    <Description>Configure your projects to easily integrate behavior tests with Testavior.</Description>
     <VersionPrefix>0.0.1</VersionPrefix>
-    <Authors>Geek Learning;Arnaud Auroux;Adrien Siffermann;Cyprien Autexier</Authors>
+    <Authors>Geek Learning;Arnaud Auroux</Authors>
     <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
-    <AssemblyName>GeekLearning.Test.Configuration</AssemblyName>
-    <PackageId>GeekLearning.Test.Configuration</PackageId>
+    <AssemblyName>GeekLearning.Testavior.Configuration</AssemblyName>
+    <PackageId>GeekLearning.Testavior.Configuration</PackageId>
     <PackageTags>dotnet;AspNetCore;UnitTest;Test</PackageTags>
-    <PackageProjectUrl>https://github.com/geeklearningio/gl-dotnet-test-integration</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/geeklearningio/testavior</PackageProjectUrl>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>

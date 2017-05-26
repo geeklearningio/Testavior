@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Sample.Test.Mvc.CreateBlog
+﻿namespace GeekLearning.Testavior.Sample.Test.Mvc.CreateBlog
 {
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

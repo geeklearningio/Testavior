@@ -1,7 +1,8 @@
-﻿namespace GeekLearning.Test.Integration.Sample.Test.Mvc.GetBlogs
+﻿namespace GeekLearning.Testavior.Sample.Test.Mvc.GetBlogs
 {
-    using GeekLearning.Test.Integration.Mvc;
-    using GeekLearning.Test.Integration.Sample.Data;
+    using GeekLearning.Testavior;
+    using GeekLearning.Testavior.Mvc;
+    using GeekLearning.Testavior.Sample.Data;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;

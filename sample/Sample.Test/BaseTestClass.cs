@@ -1,7 +1,7 @@
-﻿namespace GeekLearning.Test.Integration.Sample.Test
+﻿namespace GeekLearning.Testavior.Sample.Test
 {
     using Data;
-    using Environment;
+    using GeekLearning.Testavior.Environment;
     using Microsoft.Extensions.DependencyInjection;
     using System.Collections.Generic;
     using System.IO;

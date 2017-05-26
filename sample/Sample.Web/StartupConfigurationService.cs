@@ -1,6 +1,6 @@
-﻿namespace GeekLearning.Test.Integration.Sample
+﻿namespace GeekLearning.Testavior.Sample
 {
-    using Configuration.Startup;
+    using GeekLearning.Testavior.Configuration.Startup;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

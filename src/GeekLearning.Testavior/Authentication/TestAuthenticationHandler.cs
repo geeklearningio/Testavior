@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Authentication
+﻿namespace GeekLearning.Testavior.Authentication
 {
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Http.Authentication;

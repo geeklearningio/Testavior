@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Configuration.Startup
+﻿namespace GeekLearning.Testavior.Configuration.Startup
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

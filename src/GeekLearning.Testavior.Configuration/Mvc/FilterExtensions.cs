@@ -1,6 +1,6 @@
 ﻿namespace Microsoft.Extensions.DependencyInjection
 {
-    using GeekLearning.Test.Configuration.Mvc;
+    using GeekLearning.Testavior.Configuration.Mvc;
     using System.Linq;
 
     public static class FilterExtensions
@@ -23,7 +23,7 @@
 
 namespace Microsoft.AspNetCore.Builder
 {
-    using GeekLearning.Test.Configuration.Mvc;
+    using GeekLearning.Testavior.Configuration.Mvc;
     using Mvc.Filters;
 
     public static class FilterExtensions

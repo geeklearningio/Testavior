@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Environment
+﻿namespace GeekLearning.Testavior.Environment
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;

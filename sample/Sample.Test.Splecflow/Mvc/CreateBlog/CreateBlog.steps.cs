@@ -1,9 +1,9 @@
 ﻿namespace GeekLearning.Test.Integration.Sample.Test.Mvc.CreateBlog
 {
-    using Environment;
+    using GeekLearning.Testavior.Environment;
+    using GeekLearning.Testavior.Sample.Data;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System;
     using System.Linq;
     using System.Net.Http;
     using TechTalk.SpecFlow;
@@ -16,7 +16,7 @@
         {
             ScenarioContext.Current.Get<ITestEnvironment>("TestEnvironment")
                                    .Client
-                                   .PostAsJsonAntiForgeryAsync("blogs/create", new Data.Blog { Url = blogUrl }).Wait();
+                                   .PostAsJsonAntiForgeryAsync("blogs/create", new Blog { Url = blogUrl }).Wait();
         }
 
         [Then(@"the blog '(.*)' must be created")]
@@ -25,7 +25,7 @@
             using (var serviceScope = ScenarioContext.Current.Get<ITestEnvironment>("TestEnvironment").ServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 Assert.IsNotNull(serviceScope.ServiceProvider
-                                             .GetService<Data.BloggingContext>()
+                                             .GetService<BloggingContext>()
                                              .Blogs
                                              .FirstOrDefault(b => b.Url == blogUrl));
             }

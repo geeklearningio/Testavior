@@ -1,7 +1,7 @@
 ﻿namespace System.Net.Http
 {
     using Collections.Generic;
-    using GeekLearning.Test.Integration.Helpers.Http;
+    using GeekLearning.Testavior.Helpers.Http;
     using System.Threading.Tasks;
 
     public static class HttpClientHelper

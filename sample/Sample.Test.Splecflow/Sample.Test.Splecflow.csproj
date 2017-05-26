@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\GeekLearning.Test.Integration\GeekLearning.Test.Integration.csproj" />
+    <ProjectReference Include="..\..\src\GeekLearning.Testavior\GeekLearning.Testavior.csproj" />
     <ProjectReference Include="..\Sample.Web\Sample.Web.csproj" />
   </ItemGroup>
 

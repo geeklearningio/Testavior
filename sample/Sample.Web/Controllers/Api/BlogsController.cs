@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Sample.Controllers.Api
+﻿namespace GeekLearning.Testavior.Sample.Controllers.Api
 {
 	using Data;
 	using Microsoft.AspNetCore.Mvc;

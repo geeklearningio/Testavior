@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Mvc
+﻿namespace GeekLearning.Testavior.Mvc
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;

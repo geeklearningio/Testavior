@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Add integration tests to your ASP.NET Mvc Core applications.</Description>
+    <Description>Testavior is a set of NuGet libraries to help you develop Behavior Tests for ASP.NET Core.</Description>
     <VersionPrefix>0.0.1</VersionPrefix>
-    <Authors>Geek Learning;Arnaud Auroux;Adrien Siffermann;Cyprien Autexier</Authors>
+    <Authors>Geek Learning;Arnaud Auroux;Adrien Siffermann</Authors>
     <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
-    <AssemblyName>GeekLearning.Test.Integration</AssemblyName>
-    <PackageId>GeekLearning.Test.Integration</PackageId>
+    <AssemblyName>GeekLearning.Testavior</AssemblyName>
+    <PackageId>GeekLearning.Testavior</PackageId>
     <PackageTags>dotnet;AspNetCore;UnitTest;Test</PackageTags>
-    <PackageProjectUrl>https://github.com/geeklearningio/gl-dotnet-test-integration</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/geeklearningio/testavior</PackageProjectUrl>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeekLearning.Test.Configuration\GeekLearning.Test.Configuration.csproj" />
+    <ProjectReference Include="..\GeekLearning.Testavior.Configuration\GeekLearning.Testavior.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>

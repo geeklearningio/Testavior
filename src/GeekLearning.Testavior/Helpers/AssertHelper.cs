@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration
+﻿namespace GeekLearning.Testavior
 {
     using System;
     using System.Collections;

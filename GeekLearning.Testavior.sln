@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{033A6692-6022-469D-A0E7-B9C636CA05A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "items", "items", "{54842458-42F9-4A49-A286-83AA1071184A}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		global.json = global.json
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -15,9 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{369032
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "specflow", "specflow", "{D6AF528A-BA8D-47D7-BAD0-810154BB0FD9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekLearning.Test.Integration", "src\GeekLearning.Test.Integration\GeekLearning.Test.Integration.csproj", "{F28C9E50-7EB0-4368-9812-8EE693648E78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekLearning.Testavior", "src\GeekLearning.Testavior\GeekLearning.Testavior.csproj", "{F28C9E50-7EB0-4368-9812-8EE693648E78}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekLearning.Test.Configuration", "src\GeekLearning.Test.Configuration\GeekLearning.Test.Configuration.csproj", "{9146CE74-6610-472E-8FC8-3AEF733868D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekLearning.Testavior.Configuration", "src\GeekLearning.Testavior.Configuration\GeekLearning.Testavior.Configuration.csproj", "{9146CE74-6610-472E-8FC8-3AEF733868D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Test.Splecflow", "sample\Sample.Test.Splecflow\Sample.Test.Splecflow.csproj", "{8EF01F44-FDCC-4E25-8519-2D93C450379A}"
 EndProject

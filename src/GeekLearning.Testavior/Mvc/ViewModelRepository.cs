@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Mvc
+﻿namespace GeekLearning.Testavior.Mvc
 {
     using System;
     using System.Collections.Concurrent;
