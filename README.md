@@ -24,13 +24,13 @@ For more information about *Behavior Testing* with ASP.NET Core, please take a l
 On your ASP.NET Core project
 * Install the **GeekLearning.SceneTest.Configuration** nuget package
   ```
-  > dotnet add package GeekLearning.SceneTest.Configuration
+  > dotnet add package GeekLearning.Testavior.Configuration
   ```
 
 On your .NET Core Unit Test project
 * Install the **GeekLearning.SceneTest** nuget package
   ```
-  > dotnet add package GeekLearning.SceneTest
+  > dotnet add package GeekLearning.Testavior
   ```
 * Add your ASP.NET Core web project as a project reference
 ### Configuration
@@ -110,16 +110,47 @@ public class Startup
 A specific *IStartupConfigurationService* is required for the **Test** environment if you want to implement **Test Specific** configuration.  
 *Testavior* comes with a test specific *IStartupConfigurationService* implementation: **TestStartupConfigurationService** which provide a **Test Environment** full of useful features (see **Features** section).  
 Of course you can implement your own *Test StartupConfigurationService* (by using the onboard TestStartupConfigurationService or not).  
+
 To create a *Test Environment*, just instanciate the **TestEnvironment** class by passing it your ASP.NET Core application *Startup*, your *IStartupConfigurationService* implementation and the type of your EF Core ObjectContext
 ```csharp
 var testEnvironment = new TestEnvironment<Startup, TestStartupConfigurationService<[EF_DB_CONTEXT]>>(
     Path.Combine(System.AppContext.BaseDirectory, @"[PATH_TO_WEB_APP]"));
 ```
-Then you can write your test by just sending web requests using the *Test Environment*:
+
+#### API Test
+Write your API test by just sending web requests using the *Test Environment*:
 ```csharp
 var response = testEnvironment.Client.GetAsync("/api/data").Result;
 response.EnsureSuccessStatusCode();
 
-// test the response.Content
-// ...
+// Test result content
+var result = JsonConvert.DeserializeObject<Data[]>(response.Content.ReadAsStringAsync().Result);
+
+Assert.AreEqual("data", result.Data);
+...
 ```
+
+#### MVC Test
+Write a MVC test is almost as easy as testing an API except that you might want to test the **Model** returned by the server and not the **View**.  
+To do that, *Testavior* provides a **ViewModelRepository** that will intercept and store the view's models returned by the server.
+
+You can access to the this repository using the ASP.NET Core dependency injection mechanism:
+
+```csharp
+[TestMethod]
+public void Mvc_GetBlogsShouldBeOk()
+{
+    base.TestEnvironment.Client.GetAsync("/").Result.EnsureSuccessStatusCode();
+
+    var viewModel = base.TestEnvironment
+                        .ServiceProvider
+                        .GetRequiredService<ViewModelRepository>()
+                        .Get<[VIEWMODEL_TYPE]>();
+
+    Assert.AreEqual("data", viewModel.Data);
+}
+```
+
+And feel free to take a look at the [Samples](https://github.com/geeklearningio/gl-dotnet-test-integration/tree/develop/sample) section ;)
+
+Happy testing ! :)
