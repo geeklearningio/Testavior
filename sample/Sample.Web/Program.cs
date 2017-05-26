@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Sample
+﻿namespace GeekLearning.Testavior.Sample
 {
     using Microsoft.AspNetCore.Hosting;
     using System.IO;

@@ -1,4 +1,4 @@
-﻿namespace GeekLearning.Test.Integration.Sample.Data
+﻿namespace GeekLearning.Testavior.Sample.Data
 {
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;

@@ -1,6 +1,6 @@
-﻿namespace GeekLearning.Test.Integration.Sample.Test.Api.GetBlogs
+﻿namespace GeekLearning.Testavior.Sample.Test.Api.GetBlogs
 {
-    using GeekLearning.Test.Integration.Sample.Data;
+    using GeekLearning.Testavior.Sample.Data;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using Newtonsoft.Json;
 	using System.Collections.Generic;

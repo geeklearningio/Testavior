@@ -1,10 +1,10 @@
 ﻿namespace GeekLearning.Test.Integration.Sample.Test.GetBlogs.Api
 {
-    using Data;
-    using Environment;
-	using Newtonsoft.Json;
-	using System.Collections.Generic;
-    using System.Net.Http;
+    using GeekLearning.Testavior;
+    using GeekLearning.Testavior.Environment;
+    using GeekLearning.Testavior.Sample.Data;
+    using Newtonsoft.Json;
+    using System.Collections.Generic;
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 

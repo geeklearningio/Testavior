@@ -1,15 +1,15 @@
-﻿namespace GeekLearning.Test.Integration.Sample
+﻿namespace GeekLearning.Testavior.Sample
 {
-    using Configuration.Startup;
+    using GeekLearning.Testavior.Configuration.Startup;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
     public class StartupConfigurationService : DefaultStartupConfigurationService
     {
-        public override void ConfigureService(IServiceCollection services, IConfigurationRoot configuration)
+        public override void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration)
         {
-            base.ConfigureService(services, configuration);
+            base.ConfigureServices(services, configuration);
 
             var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Gl.Test.Integration.Sample;Trusted_Connection=True;MultipleActiveResultSets=true";
             
