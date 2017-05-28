@@ -120,13 +120,20 @@ var testEnvironment = new TestEnvironment<Startup, TestStartupConfigurationServi
 #### API Test
 Write your API test by just sending web requests using the *Test Environment*:
 ```csharp
-var response = testEnvironment.Client.GetAsync("/api/data").Result;
-response.EnsureSuccessStatusCode();
+[TestMethod]
+public void ScenarioShouldBeOk()
+{
+    var testEnvironment = new TestEnvironment<Startup, TestStartupConfigurationService<[EF_DB_CONTEXT]>>(
+       Path.Combine(System.AppContext.BaseDirectory, @"[PATH_TO_WEB_APP]"));
 
-// Test result content
-var result = JsonConvert.DeserializeObject<Data[]>(response.Content.ReadAsStringAsync().Result);
+    var response = testEnvironment.Client.GetAsync("/api/data").Result;
+    response.EnsureSuccessStatusCode();
 
-Assert.AreEqual("data", result.Data);
+    // Test result content
+    var result = JsonConvert.DeserializeObject<Data[]>(response.Content.ReadAsStringAsync().Result);
+
+    Assert.AreEqual("data", result.Data);
+}
 ...
 ```
 
@@ -138,9 +145,12 @@ You can access to the this repository using the ASP.NET Core dependency injectio
 
 ```csharp
 [TestMethod]
-public void Mvc_GetBlogsShouldBeOk()
+public void ScenarioShouldBeOk()
 {
-    base.TestEnvironment.Client.GetAsync("/").Result.EnsureSuccessStatusCode();
+    var testEnvironment = new TestEnvironment<Startup, TestStartupConfigurationService<[EF_DB_CONTEXT]>>(
+       Path.Combine(System.AppContext.BaseDirectory, @"[PATH_TO_WEB_APP]"));
+
+    testEnvironment.Client.GetAsync("/").Result.EnsureSuccessStatusCode();
 
     var viewModel = base.TestEnvironment
                         .ServiceProvider
