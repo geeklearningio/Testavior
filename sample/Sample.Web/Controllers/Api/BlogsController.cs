@@ -17,6 +17,7 @@
         }
 
         [HttpGet]
+        [Microsoft.AspNetCore.Authorization.Authorize]
         public async Task<IEnumerable<Blog>> GeBlogs()
         {
             return await this.context.Blogs.ToListAsync();

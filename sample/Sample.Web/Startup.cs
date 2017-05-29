@@ -21,7 +21,7 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
 		services
-			.AddMvc(c => c.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build())))
+			.AddMvc(/*c => c.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()))*/)
 			.AddFilterCollection();
 
         // Pass configuration (IConfigurationRoot) to the configuration service if needed
