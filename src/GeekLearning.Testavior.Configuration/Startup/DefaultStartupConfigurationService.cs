@@ -17,7 +17,7 @@
             }
         }
 
-        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) { }
+        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IConfigurationRoot configuration) { }
 
         public virtual void ConfigureEnvironment(IHostingEnvironment env) { }
 
