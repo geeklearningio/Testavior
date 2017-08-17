@@ -38,15 +38,15 @@ On your .NET Core Unit Test project
 * Add your ASP.NET Core web project as a project reference
 ### Configuration
 The Test environment provided by *Testavior* is based on a **Startup Configuration Service** that let you separate the **Production** environment configuration from the **Test** environment configuration.
-This configuration service is represented by a contract **IStartupConfigurationService** which define 3 methods: *Configure, ConfigureEnvironment, ConfigureService* that have to be called within the **Startup Routine** to inject environment dependent configuration.  
+This configuration service is represented by a contract `IStartupConfigurationService` which define 3 methods: `Configure` - `ConfigureEnvironment -  ConfigureService` that have to be called within the **Startup Routine** to inject environment dependent configuration.  
 
 1 - In your **ASP.NET Core** project:
-* Add a *StartupConfigurationService* class (change name if you wish) to your web project.
-* Implement the **IStartupConfigurationService** interface (optionally, inherit from *DefaultStartupConfigurationService* to use the default empty implementation)
+* Add a `StartupConfigurationService` class (change name if you wish) to your web project.
+* Implement the `IStartupConfigurationService` interface (optionally, inherit from `DefaultStartupConfigurationService` to use the default empty implementation)
 * Implement the configuration specific to the Production environment and which must not be executed in the Test environment:
-  * *ConfigureServices*: implement the configuration options that are specific to the Production environment
-  * *Configure*: implement the *middleware* configuration specific to the Production environment
-  * *ConfigureEnvironment*: implement what has to be executed before anything
+  * `ConfigureServices`: implement the configuration options that are specific to the Production environment
+  * `Configure`: implement the *middleware* configuration specific to the Production environment
+  * `ConfigureEnvironment`: implement what has to be executed before anything
 
  Sample:
  ```csharp
@@ -65,7 +65,7 @@ This configuration service is represented by a contract **IStartupConfigurationS
  ```
  
  2 - In your **Program** class:  
- Inject your *StartupConfigurationService* by calling the **ConfigureStartup** method on your **WebHostBuilder**:
+ Inject your `StartupConfigurationService` by calling the `ConfigureStartup` method on your `WebHostBuilder`:
  ```csharp
  new WebHostBuilder()
     ...
@@ -73,11 +73,11 @@ This configuration service is represented by a contract **IStartupConfigurationS
     .ConfigureStartup<StartupConfigurationService>()
  ```
 
- 3 - In your **Startup** class:
- * Inject the *IStartupConfigurationService* interface into the Startup class
- * Call the *ConfigureEnvironment* method at the end of the Startup constructor
- * Call the *ConfigureServices* method at the end of the original Startup ConfigureServices method
- * Call the *Configure* method at the beginning of the original Startup Configure method
+ 3 - In your `Startup` class:
+ * Inject the `IStartupConfigurationService` interface into the `Startup` class
+ * Call the `ConfigureEnvironment` method at the end of the `Startup` constructor
+ * Call the `ConfigureServices` method at the end of the original `Startup.ConfigureServices` method
+ * Call the `Configure` method at the beginning of the original `Startup.Configure` method
  
  Sample:
  ```csharp
@@ -108,13 +108,38 @@ public class Startup
 }
 ```
 
+4 - In your test project file:  
+The **Razor** engine uses dependency files (.deps.json) to resolve some references at runtime. So in order to test the **MVC** part of a application, it is necessary to import these files. To do it, add the following section to your `.csproj`:
+```xml
+<Target Name="CopyDepsFiles" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
+    <ItemGroup>
+      <DepsFilePaths Include="$([System.IO.Path]::ChangeExtension('%(_ResolvedProjectReferencePaths.FullPath)', '.deps.json'))" />
+    </ItemGroup>
+
+    <Copy SourceFiles="%(DepsFilePaths.FullPath)" DestinationFolder="$(OutputPath)" Condition="Exists('%(DepsFilePaths.FullPath)')" />
+</Target>
+```
+
+5 - For **xUnit** users  
+If you intend to use xUnit, first follow the [official documention](https://xunit.github.io/docs/getting-started-dotnet-core), then add a `xunit.runner.json` file to your test project:
+```json
+{
+  "shadowCopy": false
+}
+```
+and add the following section to your `.csproj`:
+```xml
+<ItemGroup>
+  <None Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
 
 ### Writing Tests
-A specific *IStartupConfigurationService* is required for the **Test** environment if you want to implement **Test Specific** configuration.  
-*Testavior* comes with a test specific *IStartupConfigurationService* implementation: **TestStartupConfigurationService** which provide a **Test Environment** full of useful features (see **Features** section).  
-Of course you can implement your own *Test StartupConfigurationService* (by using the onboard TestStartupConfigurationService or not).  
+A specific `IStartupConfigurationService` is required for the **Test** environment if you want to implement **Test Specific** configuration.  
+*Testavior* comes with a test specific `IStartupConfigurationService` implementation: `TestStartupConfigurationService` which provide a **Test Environment** full of useful features (see **Features** section).  
+Of course you can implement your own Startup configuration service (by using the onboard `TestStartupConfigurationService` or not).  
 
-To create a *Test Environment*, just instanciate the **TestEnvironment** class by passing it your ASP.NET Core application *Startup*, your *IStartupConfigurationService* implementation, the type of your EF Core ObjectContext and the relative path to your ASP.NET Core project (required to resolve MVC views).
+To create a *Test Environment*, just instanciate the `TestEnvironment` class by passing it your ASP.NET Core application `Startup`, your `IStartupConfigurationService` implementation, the type of your EF Core ObjectContext and the relative path to your ASP.NET Core project (required to resolve MVC views).
 ```csharp
 var testEnvironment = new TestEnvironment<Startup, TestStartupConfigurationService<[EF_DB_CONTEXT]>>(
     Path.Combine(System.AppContext.BaseDirectory, @"[PATH_TO_WEB_APP]"));
@@ -141,7 +166,7 @@ public void ScenarioShouldBeOk()
 
 #### MVC Test
 Write a MVC test is almost as easy as testing an API except that you might want to test the **Model** returned by the server and not the **View**.  
-To do that, *Testavior* provides a **ViewModelRepository** that will intercept and store the view's models returned by the server.
+To do that, *Testavior* provides a **ViewModel Repository** that will intercept and store the view's models returned by the server.
 
 You can access to the this repository using the ASP.NET Core dependency injection mechanism:
 
@@ -154,7 +179,7 @@ public void ScenarioShouldBeOk()
 
     testEnvironment.Client.GetAsync("/").Result.EnsureSuccessStatusCode();
 
-    var viewModel = base.TestEnvironment
+    var viewModel = testEnvironment
                         .ServiceProvider
                         .GetRequiredService<ViewModelRepository>()
                         .Get<[VIEWMODEL_TYPE]>();

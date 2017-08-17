@@ -10,8 +10,7 @@
     public abstract class BaseTestClass
     {
         protected TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>> TestEnvironment { get; } =
-             new TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>>(
-                        Path.Combine(System.AppContext.BaseDirectory, @"..\..\..\..\Sample.Web"));
+             new TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>>();
 
         protected void CreateBlogs()
         {

@@ -11,7 +11,7 @@
     {
         IServiceProvider ServiceProvider { get; }
 
-        void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory);
+        void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IConfigurationRoot configuration);
 
         void ConfigureEnvironment(IHostingEnvironment env);
 

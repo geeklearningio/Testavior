@@ -18,7 +18,7 @@
     {
         public IServiceProvider ServiceProvider { get; private set; }
 
-        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IConfigurationRoot configuration)
         {
             ServiceProvider = app.ApplicationServices;
 
