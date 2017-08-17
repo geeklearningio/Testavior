@@ -179,7 +179,7 @@ public void ScenarioShouldBeOk()
 
     testEnvironment.Client.GetAsync("/").Result.EnsureSuccessStatusCode();
 
-    var viewModel = base.TestEnvironment
+    var viewModel = testEnvironment
                         .ServiceProvider
                         .GetRequiredService<ViewModelRepository>()
                         .Get<[VIEWMODEL_TYPE]>();
