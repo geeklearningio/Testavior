@@ -2,8 +2,7 @@
 {
     using Data;
     using Environment;
-	using Microsoft.Extensions.DependencyInjection;
-    using System.IO;
+    using Microsoft.Extensions.DependencyInjection;
     using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
 
@@ -15,8 +14,7 @@
         {
             ScenarioContext.Current.Add(
                 "TestEnvironment",
-                new TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>>(
-                        Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\..\Sample.Web")));
+                new TestEnvironment<Startup, TestStartupConfigurationService<BloggingContext>>());
 
             // add additional data configuration here
         }
