@@ -1,12 +1,17 @@
 ﻿namespace GeekLearning.Testavior.Authentication
 {
     using Microsoft.AspNetCore.Authentication;
-    using Microsoft.AspNetCore.Http.Authentication;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Options;
     using System.Security.Claims;
+    using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
     public class TestAuthenticationHandler : AuthenticationHandler<TestAuthenticationOptions>
     {
+        public TestAuthenticationHandler(IOptionsMonitor<TestAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
+            : base(options, logger, encoder, clock) { }
+
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             return Task.FromResult(
@@ -14,7 +19,7 @@
                     new AuthenticationTicket(
                         new ClaimsPrincipal(Options.Identity),
                         new AuthenticationProperties(),
-                        this.Options.AuthenticationScheme)));
+                        this.Scheme.Name)));
         }
     }
 }

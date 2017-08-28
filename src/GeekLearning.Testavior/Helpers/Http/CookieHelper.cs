@@ -21,7 +21,7 @@
 			{
 				SetCookieHeaderValue.ParseList(values.ToList()).ToList().ForEach(cookie =>
 				{
-					result.Add(cookie.Name, cookie.Value);
+					result.Add(cookie.Name.Value, cookie.Value.Value);
 				});
 			}
 

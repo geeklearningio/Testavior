@@ -9,6 +9,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Options;
     using Mvc;
     using System;
     using System.Security.Claims;
@@ -56,7 +57,7 @@
 
         protected virtual void SetupBuilder(IApplicationBuilder app)
         {
-            app.UseMiddleware<TestAuthenticationMiddleware>();
+            app.UseAuthentication();            
         }
 
         protected virtual void ConfigureStore(IServiceCollection services)
@@ -68,14 +69,13 @@
             services.AddDbContext<TDbContext>(options => options.UseSqlite(connection));
         }
 
-        protected virtual void ConfigureAuthentication(IServiceCollection services, string authenticationScheme = null)
+        protected virtual void ConfigureAuthentication(IServiceCollection services, string authenticationDefaultScheme = "Test")
         {
-            services.AddSingleton<TestAuthenticationOptions>();
-            services.Configure<TestAuthenticationOptions>(o =>
-            {
-                o.AuthenticationScheme = authenticationScheme;
-                o.Identity = ConfigureIdentity();
-            });
+            services.AddAuthentication(authenticationDefaultScheme)
+                    .AddTestAuthentication(authenticationDefaultScheme, "Test Authentication Scheme", o =>
+                    {
+                        o.Identity = ConfigureIdentity();
+                    });
         }
 
         protected virtual ClaimsIdentity ConfigureIdentity()
