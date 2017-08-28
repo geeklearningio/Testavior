@@ -6,7 +6,7 @@
     // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/css/site.css"
-    ]
+    ] 
   },
   {
     "outputFileName": "wwwroot/js/site.min.js",
