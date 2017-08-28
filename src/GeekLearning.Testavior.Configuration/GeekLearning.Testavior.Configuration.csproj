@@ -4,29 +4,19 @@
     <Description>Configure your projects to easily integrate behavior tests with Testavior.</Description>
     <VersionPrefix>0.0.1</VersionPrefix>
     <Authors>Geek Learning;Arnaud Auroux</Authors>
-    <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>GeekLearning.Testavior.Configuration</AssemblyName>
     <PackageId>GeekLearning.Testavior.Configuration</PackageId>
     <PackageTags>dotnet;AspNetCore;UnitTest;Test</PackageTags>
-    <PackageProjectUrl>https://github.com/geeklearningio/testavior</PackageProjectUrl>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageProjectUrl>https://github.com/geeklearningio/testavior</PackageProjectUrl>    
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.3" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

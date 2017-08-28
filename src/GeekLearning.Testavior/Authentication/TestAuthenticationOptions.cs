@@ -1,16 +1,10 @@
 ﻿namespace GeekLearning.Testavior.Authentication
 {
-    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Authentication;
     using System.Security.Claims;
 
-    public class TestAuthenticationOptions : AuthenticationOptions
+    public class TestAuthenticationOptions : AuthenticationSchemeOptions
     {
         public ClaimsIdentity Identity { get; set; }
-
-        public TestAuthenticationOptions()
-        {
-            this.AuthenticationScheme = "TestAuthenticationMiddleware";
-            this.AutomaticAuthenticate = true;
-        }
     }
 }
