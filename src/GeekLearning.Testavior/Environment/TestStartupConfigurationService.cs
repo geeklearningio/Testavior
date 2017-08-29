@@ -52,12 +52,12 @@
 
                 dbContext.Database.OpenConnection();
                 dbContext.Database.EnsureCreated();
-            }
+            } 
         }
 
         protected virtual void SetupBuilder(IApplicationBuilder app)
         {
-            app.UseAuthentication();            
+            app.UseAuthentication();
         }
 
         protected virtual void ConfigureStore(IServiceCollection services)
@@ -71,11 +71,14 @@
 
         protected virtual void ConfigureAuthentication(IServiceCollection services, string authenticationDefaultScheme = "Test")
         {
-            services.AddAuthentication(authenticationDefaultScheme)
-                    .AddTestAuthentication(authenticationDefaultScheme, "Test Authentication Scheme", o =>
-                    {
-                        o.Identity = ConfigureIdentity();
-                    });
+            services.AddAuthentication(o =>
+            {
+                o.DefaultAuthenticateScheme = authenticationDefaultScheme;
+            })
+            .AddTestAuthentication(authenticationDefaultScheme, "Test Authentication Scheme", o =>
+            {
+                o.Identity = ConfigureIdentity();
+            });
         }
 
         protected virtual ClaimsIdentity ConfigureIdentity()
