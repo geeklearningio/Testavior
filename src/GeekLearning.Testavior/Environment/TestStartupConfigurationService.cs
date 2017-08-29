@@ -74,6 +74,7 @@
             services.AddAuthentication(o =>
             {
                 o.DefaultAuthenticateScheme = authenticationDefaultScheme;
+                o.DefaultChallengeScheme = authenticationDefaultScheme;
             })
             .AddTestAuthentication(authenticationDefaultScheme, "Test Authentication Scheme", o =>
             {
