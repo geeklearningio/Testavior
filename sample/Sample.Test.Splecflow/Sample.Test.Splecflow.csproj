@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
-    <Exec Command="dotnet SpecFlow.NetCore --test-framework mstest --specflow-path $(USERPROFILE)\.nuget\packages\SpecFlow\2.2.0\tools\specflow.exe" />
+    <Exec Command="dotnet SpecFlow.NetCore --test-framework mstest --specflow-path $(USERPROFILE)\.nuget\packages\SpecFlow\2.2.1\tools\specflow.exe" />
   </Target>
 
   <ItemGroup>
