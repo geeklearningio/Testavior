@@ -9,9 +9,9 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
     using Mvc;
     using System;
+    using System.Linq;
     using System.Security.Claims;
 
     public class TestStartupConfigurationService<TDbContext> : IStartupConfigurationService
@@ -69,14 +69,18 @@
             services.AddDbContext<TDbContext>(options => options.UseSqlite(connection));
         }
 
-        protected virtual void ConfigureAuthentication(IServiceCollection services, string authenticationDefaultScheme = "Test")
+        protected virtual void ConfigureAuthentication(IServiceCollection services, params string[] authenticationDefaultSchemes)
         {
+            if (authenticationDefaultSchemes?.Any() != true)
+            {
+                authenticationDefaultSchemes = new string[] { "Test" };
+            }
+
             services.AddAuthentication(o =>
             {
-                o.DefaultAuthenticateScheme = authenticationDefaultScheme;
-                o.DefaultChallengeScheme = authenticationDefaultScheme;
+                o.DefaultScheme = authenticationDefaultSchemes.First();
             })
-            .AddTestAuthentication(authenticationDefaultScheme, "Test Authentication Scheme", o =>
+            .AddTestAuthentication(authenticationDefaultSchemes, "Test Authentication Scheme", o =>
             {
                 o.Identity = ConfigureIdentity();
             });
