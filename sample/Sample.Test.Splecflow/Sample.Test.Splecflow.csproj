@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <!--<RuntimeIdentifier>win7-x86</RuntimeIdentifier>-->
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -13,21 +12,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
-    <PackageReference Include="SpecFlow" Version="2.2.0" />
-    <PackageReference Include="SpecFlow.NetCore" Version="1.0.0-rc8" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+    <PackageReference Include="SpecFlow" Version="2.2.1" />
+    <PackageReference Include="SpecFlow.NetCore" Version="1.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
 
-<Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
-  <Exec Command="dotnet SpecFlow.NetCore" />
-</Target>
+  <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
+    <Exec Command="dotnet SpecFlow.NetCore --test-framework mstest --specflow-path $(USERPROFILE)\.nuget\packages\SpecFlow\2.2.1\tools\specflow.exe" />
+  </Target>
 
   <ItemGroup>
     <DotNetCliToolReference Include="SpecFlow.NetCore" Version="1.0.0-rc8" />
