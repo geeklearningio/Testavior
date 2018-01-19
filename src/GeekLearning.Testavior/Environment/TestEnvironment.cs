@@ -47,7 +47,9 @@
         {
             if (supportCookies)
             {
-                return new HttpClient(new TestMessageHandler(this.Server.CreateHandler()));
+                var client = new HttpClient(new TestMessageHandler(this.Server.CreateHandler()));
+                client.BaseAddress = this.Server.BaseAddress;
+                return client;
             }
             else
             {
