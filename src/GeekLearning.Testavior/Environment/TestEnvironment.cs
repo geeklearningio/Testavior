@@ -40,7 +40,19 @@
             }
 
             this.Server = this.CreateTestServer();
-            this.Client = Server.CreateClient();
+            this.Client = this.CreateClient(false);
+        }
+
+        public HttpClient CreateClient(bool supportCookies = true)
+        {
+            if (supportCookies)
+            {
+                return new HttpClient(new TestMessageHandler(this.Server.CreateHandler()));
+            }
+            else
+            {
+                return this.Server.CreateClient();
+            }
         }
 
         protected virtual TestServer CreateTestServer()
