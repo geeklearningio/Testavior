@@ -10,6 +10,8 @@
 
         HttpClient Client { get; }
 
+        HttpClient CreateClient(bool supportCookies = true);
+
         IServiceProvider ServiceProvider { get; }
     }
 }
