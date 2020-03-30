@@ -23,8 +23,22 @@ namespace SpecFlow.GeneratedTests.Mvc.CreateBlog
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
+        private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
+        
 #line 1 "CreateBlog.feature"
 #line hidden
+        
+        public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
+        {
+            get
+            {
+                return this._testContext;
+            }
+            set
+            {
+                this._testContext = value;
+            }
+        }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
@@ -60,6 +74,7 @@ namespace SpecFlow.GeneratedTests.Mvc.CreateBlog
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Microsoft.VisualStudio.TestTools.UnitTesting.TestContext>(TestContext);
         }
         
         public virtual void ScenarioCleanup()
@@ -76,7 +91,7 @@ namespace SpecFlow.GeneratedTests.Mvc.CreateBlog
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-
+        
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Create blog")]
         public virtual void Specflow_Mvc_CreateABlogShouldBeOk()
         {
